@@ -9,7 +9,7 @@ namespace ACX.Domain.Model
         public Guid Guid { get; set; }
 
         [Required(ErrorMessage = "BuildingNumber is required")]
-        [StringLength(10, ErrorMessage = "BuildingNumber must be at most 10 characters")]
+        [StringLength(5, ErrorMessage = "BuildingNumber must be at most 10 characters")]
         public string? BuildingNumber { get; set; }
 
         [Required(ErrorMessage = "StreetName is required")]
@@ -28,8 +28,8 @@ namespace ACX.Domain.Model
         [StringLength(50, ErrorMessage = "Country must be at most 50 characters")]
         public string? Country { get; set; } 
      // public double Latitude { get; set; }
-     //public double Longitude { get; set; }
+     // public double Longitude { get; set; }
 
     }
-}       //Navigational Properties Here
+}       
 

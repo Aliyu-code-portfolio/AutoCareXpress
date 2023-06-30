@@ -11,8 +11,7 @@ namespace ACX.Application.Contract
     public interface IPickUpAddress_Repository
     {
         Task<IEnumerable<PickUpAddress>> GetAllPickUpPickUpAddress(bool trackChanges);
-        Task<PickUpAddress> GetPickUpAddressById(int id, bool trackChanges);
-        void AddPickUpAddress(PickUpAddress pickupaddress);
+        Task<PickUpAddress> GetPickUpAddressByUserId(Guid id, bool trackChanges);
         Task UpdatePickUpAddress(PickUpAddress pickupaddress);
         void DeletePickUpAddress(PickUpAddress pickupAddress);
     }

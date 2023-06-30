@@ -10,26 +10,27 @@ namespace ACX.Domain.Model
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(Id))]
+        //[ForeignKey(nameof(Id))]
         public Guid UserId { get; set; }
 
-        [Required(ErrorMessage = "Name Description is required")]
-        [StringLength(50, ErrorMessage = "Name Description must be at most 50 characters")]
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(50, ErrorMessage = "Name must be at most 50 characters")]
         public string? Name { get; set; }
 
-     
+        [Required(ErrorMessage = "Color is required")]
+        [StringLength(20, ErrorMessage = "Color must be at most 20 characters")]
         public string? Color { get; set; }
 
         [Required(ErrorMessage = "PlateNumber is required")]
         [StringLength (10, ErrorMessage = "PlateNumber must be at most 10 alphanumeric Characters")]
         public string? PlateNumber { get; set; }
 
-        [Required(ErrorMessage = "Manufacture Name is required")]
-        [StringLength(25, ErrorMessage = "Manufacture Name must be at most 25 characters")]
+        [Required(ErrorMessage = "Manufacture name is required")]
+        [StringLength(25, ErrorMessage = "Manufacture name must be at most 25 characters")]
         public string? Manufacture { get; set; }
 
-        [Required(ErrorMessage = "Model Name is required")]
-        [StringLength(25, ErrorMessage = "Model Name must be at most 25 characters")]
+        [Required(ErrorMessage = "Model name is required")]
+        [StringLength(25, ErrorMessage = "Model name must be at most 25 characters")]
         public string? Model { get; set; }
 
         // Nagivational Properties
