@@ -9,11 +9,11 @@ namespace ACX.Application.Contract
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllAsync(bool trackChanges);
+        Task<IEnumerable<User>> GetAllUserAsync(bool trackChanges);
         Task<User> GetUserByIdAsync(int id, bool trackChanges);
-        Task<User> GetUserByNameAsync(string name, bool trackChanges);
-        Task<User> GetUserByPhoneAsync(int phone, bool trackChanges);
+        Task<User> GetUserByEmailAsync(string email, bool trackChanges);
         void CreateUser(User user);
+        void UpdateUser(User user);
         void DeleteUser(User user);
     }
 }

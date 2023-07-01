@@ -10,5 +10,8 @@ namespace ACX.Domain.Model
         [Required(ErrorMessage = "Service Location is required")]
         [StringLength(25, ErrorMessage = "Service Location must be at most 25 characters")]
         public string? Location { get; set; }
+
+        //Navigational properties
+        public virtual ServiceProvider? ServiceProvider { get; set; }
     }
 }

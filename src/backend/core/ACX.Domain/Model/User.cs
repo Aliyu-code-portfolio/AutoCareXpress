@@ -24,5 +24,10 @@ namespace ACX.Domain.Model
         [Required(ErrorMessage = "Gender is required.")]
         [RegularExpression("^[MF]$", ErrorMessage = "Gender must be either 'M' or 'F'.")]
         public char Gender { get; set; }
+
+        //Navigational properties
+        public virtual ICollection<Appointment>? Appointments { get; set; }  
+        public virtual ICollection<Vehicle>? Vehicles { get; set; }
+        public virtual PickUpAddress? PickUpAddresses { get; set; }
     }
 }

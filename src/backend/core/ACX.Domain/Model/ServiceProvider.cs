@@ -13,9 +13,6 @@ namespace ACX.Domain.Model
         [StringLength(50, ErrorMessage = "Company name must be between 1 and 50 characters.", MinimumLength = 1)]
         public string? CompanyName { get; set; }
 
-
-        //Aliyu please review. I added email and phone number to the service providers. It wasn't included in the model diagram.
-
         [Required(ErrorMessage = "Company email is required.")]
         [EmailAddress(ErrorMessage = "Invalid company email format.")]
         [StringLength(50, ErrorMessage = "Company email must be between 1 and 50 characters.", MinimumLength = 1)]
@@ -30,6 +27,10 @@ namespace ACX.Domain.Model
         public string? RegistrationNumber { get; set; }
 
         [ForeignKey(nameof(Ref_Service_Location))]
-        public Guid Ref_Service_Location_Id { get; set; }
+        public int Ref_Service_Location_Id { get; set; }
+
+        //Navigational properties
+        public virtual ICollection<Appointment>? Appointments { get; set; }
+        public virtual ICollection<ProviderService>? ProviderServices { get; set; }
     }
 }

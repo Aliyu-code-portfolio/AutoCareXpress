@@ -23,8 +23,12 @@ namespace ACX.Domain.Model
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DateCompleted { get; set; }
+        public DateTime? DateCompleted { get; set; }
 
-        public bool Status { get; set; }
+        public bool Status { get; set; } = false;
+
+        //Navigational properties
+        public virtual User? User { get; set; }
+        public virtual ServiceProvider? ServiceProvider { get; set; }
     }
 }

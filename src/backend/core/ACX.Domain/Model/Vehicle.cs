@@ -10,7 +10,7 @@ namespace ACX.Domain.Model
         [Key]
         public int Id { get; set; }
 
-        //[ForeignKey(nameof(Id))]
+        [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
@@ -34,6 +34,7 @@ namespace ACX.Domain.Model
         public string? Model { get; set; }
 
         // Nagivational Properties
-       
+       public virtual User? User { get; set; }
+
     }
 }

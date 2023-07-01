@@ -27,8 +27,12 @@ namespace ACX.Domain.Model
         [Required(ErrorMessage = "Country is required")]
         [StringLength(50, ErrorMessage = "Country must be at most 50 characters")]
         public string? Country { get; set; } 
-     // public double Latitude { get; set; }
-     // public double Longitude { get; set; }
+        //public double Latitude { get; set; }
+        //public double Longitude { get; set; }
+
+        //Navigational properties
+        public virtual User? User { get; set; } 
+
 
     }
 }       

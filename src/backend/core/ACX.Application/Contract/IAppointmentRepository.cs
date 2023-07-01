@@ -11,7 +11,9 @@ namespace ACX.Application.Contract
     {
         Task<IEnumerable<Appointment>> GetAllAsync(bool trackChanges);
         Task<Appointment> GetAppointmentByIdAsync(int id, bool trackChanges);
-        Task<Appointment> GetAppointmentByStatusAsync(bool status, bool trackChanges);
+        Task<IEnumerable<Appointment>> GetAppointmentsByStatusAsync(bool status, bool trackChanges);
+        Task<IEnumerable<Appointment>> GetAppointmentsByUserIdAsync(bool trackChanges);
+        Task<IEnumerable<Appointment>> GetAppointmentsByServiceProviderIdAsync(bool trackChanges);
         void CreateAppointment(Appointment appointment);
         void DeleteAppointment(Appointment appointment);
     }

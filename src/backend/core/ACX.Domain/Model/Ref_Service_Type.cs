@@ -15,6 +15,6 @@ namespace ACX.Domain.Model
         public string? Description { get; set; }
 
         //Navigational Properties
-
+        public virtual ProviderService? ProviderService { get; set; }
     }
 }
