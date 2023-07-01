@@ -9,10 +9,10 @@ namespace ACX.Application.DTOs.Display
 {
     public record Ref_Service_Type_Display_Dto
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
 
-        public string? ServiceName { get; set; }
+        public string? ServiceName { get; init; }
         
-        public string? Description { get; set; }
+        public string? Description { get; init; }
     }
 }
