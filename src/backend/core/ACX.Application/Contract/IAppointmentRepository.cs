@@ -9,11 +9,11 @@ namespace ACX.Application.Contract
 {
     public interface IAppointmentRepository
     {
-        Task<IEnumerable<Appointment>> GetAllAsync(bool trackChanges);
+        Task<IEnumerable<Appointment>> GetAllAppointmentAsync(bool trackChanges);
         Task<Appointment> GetAppointmentByIdAsync(int id, bool trackChanges);
         Task<IEnumerable<Appointment>> GetAppointmentsByStatusAsync(bool status, bool trackChanges);
-        Task<IEnumerable<Appointment>> GetAppointmentsByUserIdAsync(bool trackChanges);
-        Task<IEnumerable<Appointment>> GetAppointmentsByServiceProviderIdAsync(bool trackChanges);
+        Task<IEnumerable<Appointment>> GetAppointmentsByUserIdAsync(Guid userId, bool trackChanges);
+        Task<IEnumerable<Appointment>> GetAppointmentsByServiceProviderIdAsync(Guid serviceProviderId, bool trackChanges);
         void CreateAppointment(Appointment appointment);
         void DeleteAppointment(Appointment appointment);
     }
