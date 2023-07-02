@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ACX.Persistence.Repositories
 {
-    public class Ref_Service_Type_Repository : RepositoryBase<Ref_Service_Type>, IRef_Service_Type_Repository
+    internal sealed class Ref_Service_Type_Repository : RepositoryBase<Ref_Service_Type>, IRef_Service_Type_Repository
     {
         public Ref_Service_Type_Repository(RepositoryContext context):base(context)
         {

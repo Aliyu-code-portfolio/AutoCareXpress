@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\ACX.Application\ACX.Application.csproj" />
   </ItemGroup>
 
 </Project>

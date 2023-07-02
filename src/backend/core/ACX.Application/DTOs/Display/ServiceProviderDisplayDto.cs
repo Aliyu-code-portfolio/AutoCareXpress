@@ -11,6 +11,7 @@ namespace ACX.Application.DTOs.Display
 {
     public record ServiceProviderDisplayDto
     {
+        public Guid Id { get; set; }
         public string? CompanyName { get; set; }
 
         public string? CompanyEmail { get; set; }

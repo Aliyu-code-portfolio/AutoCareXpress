@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ACX.Persistence.Repositories
 {
-    public class Ref_Service_Location_Repository : RepositoryBase<Ref_Service_Location>, IRef_Service_Location_Repository
+    internal sealed class Ref_Service_Location_Repository : RepositoryBase<Ref_Service_Location>, IRef_Service_Location_Repository
     {
         public Ref_Service_Location_Repository(RepositoryContext context):base(context)
         {

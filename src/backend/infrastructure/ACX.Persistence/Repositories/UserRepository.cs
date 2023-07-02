@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ACX.Persistence.Repositories
 {
-    public class UserRepository :RepositoryBase<User>, IUserRepository
+    internal sealed class UserRepository :RepositoryBase<User>, IUserRepository
     {
         public UserRepository(RepositoryContext context):base(context)
         {
@@ -32,7 +32,7 @@ namespace ACX.Persistence.Repositories
             return users;
         }
 
-        public async Task<User> GetUserByIdAsync(int id, bool trackChanges)
+        public async Task<User> GetUserByIdAsync(Guid id, bool trackChanges)
         {
             var user = await FindByCondition(u => u.Id.Equals(id), trackChanges).FirstOrDefaultAsync();
             return user;

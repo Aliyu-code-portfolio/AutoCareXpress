@@ -25,8 +25,7 @@ namespace ACX.Persistence.Repositories
         {
             Delete(vehicle);
         }
-
-        //please crosscheck this also
+        
         public async Task<IEnumerable<Vehicle>> GetAllUserVehicle(Guid userId, bool trackChanges)
         {
             var vehicles = await FindByCondition(v => v.UserId.Equals(userId), trackChanges).ToListAsync();

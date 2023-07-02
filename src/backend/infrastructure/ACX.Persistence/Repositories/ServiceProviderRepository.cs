@@ -32,15 +32,15 @@ namespace ACX.Persistence.Repositories
             return serviceProviders;
         }
 
-        public async Task<ServiceProvider> GetServiceProviderByIdAsync(int id, bool trackChanges)
+        public async Task<ServiceProvider> GetServiceProviderByIdAsync(Guid id, bool trackChanges)
         {
             var serviceProvider = await FindByCondition(s => s.Id.Equals(id), trackChanges).FirstOrDefaultAsync();
             return serviceProvider;
         }
 
-        public async Task<ServiceProvider> GetServiceProviderByNameAsync(string companyName, bool trackChanges)
+        public async Task<ServiceProvider> GetServiceProviderByEmailAsync(string email, bool trackChanges)
         {
-            var serviceProvider = await FindByCondition(s => s.CompanyName.Contains(companyName), trackChanges).FirstOrDefaultAsync();
+            var serviceProvider = await FindByCondition(s => s.CompanyEmail.Contains(email), trackChanges).FirstOrDefaultAsync();
             return serviceProvider;
         }
 
