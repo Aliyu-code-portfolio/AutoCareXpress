@@ -23,9 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.ServiceContract", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.Service", "src\backend\infrastructure\ACX.Service\ACX.Service.csproj", "{CD28E31B-A673-4CFB-908A-3E4E2452DEB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACX.LoggerService", "src\backend\core\ACX.LoggerService\ACX.LoggerService.csproj", "{D538346C-03A6-49DA-B616-38D966E4556B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.LoggerService", "src\backend\core\ACX.LoggerService\ACX.LoggerService.csproj", "{D538346C-03A6-49DA-B616-38D966E4556B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACX.WebAPI", "src\backend\presentation\ACX.WebAPI\ACX.WebAPI.csproj", "{95132476-D3EA-4115-8ED8-FCFE42000A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.WebAPI", "src\backend\presentation\ACX.WebAPI\ACX.WebAPI.csproj", "{95132476-D3EA-4115-8ED8-FCFE42000A94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACX.EndsPoint", "src\backend\presentation\ACX.EndsPoint\ACX.EndsPoint.csproj", "{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{95132476-D3EA-4115-8ED8-FCFE42000A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95132476-D3EA-4115-8ED8-FCFE42000A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95132476-D3EA-4115-8ED8-FCFE42000A94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{CD28E31B-A673-4CFB-908A-3E4E2452DEB6} = {E84F93E3-743C-424E-A52A-216B60501FF2}
 		{D538346C-03A6-49DA-B616-38D966E4556B} = {593A3CB7-AF61-4B06-B91E-7CC87A80669D}
 		{95132476-D3EA-4115-8ED8-FCFE42000A94} = {69F7276C-9E65-4A0A-BB4B-6F1757A47040}
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800} = {69F7276C-9E65-4A0A-BB4B-6F1757A47040}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C86E8618-BAF0-41C2-9CED-4816D0CEE6E2}
