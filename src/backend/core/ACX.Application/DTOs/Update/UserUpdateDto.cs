@@ -9,6 +9,7 @@ namespace ACX.Application.DTOs.Update
 {
     public record UserUpdateDto
     {
+        public Guid Id { get; init; }
         [StringLength(25, ErrorMessage = "Name must be between 1 and 25 characters.", MinimumLength = 1)]
         public string? Name { get; init; }
 

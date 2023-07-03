@@ -9,7 +9,7 @@ namespace ACX.Application.DTOs.Update
 {
     public record PickUpAddressUpdateDto
     {
-        public Guid Guid { get; init; }
+        public Guid UserId { get; init; }
 
         [Required(ErrorMessage = "BuildingNumber is required")]
         [StringLength(5, ErrorMessage = "BuildingNumber must be at most 10 characters")]

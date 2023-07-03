@@ -11,6 +11,7 @@ namespace ACX.Application.DTOs.Update
 {
     public record ServiceProviderUpdateDto
     {
+        public Guid Id { get; init; }
         [Required(ErrorMessage = "Company name is required.")]
         [StringLength(50, ErrorMessage = "Company name must be between 1 and 50 characters.", MinimumLength = 1)]
         public string? CompanyName { get; init; }

@@ -76,11 +76,14 @@ namespace ACX.Service.Services
             return serviceProviderDto;
         }
 
-        public async void UpdateServiceProvider(Guid id, ServiceProviderUpdateDto serviceProviderUpdateDto)
+        public async void UpdateServiceProvider(ServiceProviderUpdateDto serviceProviderUpdateDto)
         {
-            var serviceProvider = await _repositoryManager.ServiceProviderRepository.GetServiceProviderByIdAsync(id,false)
-                ?? throw new ServiceProviderNotFoundException(id);
+            var serviceProvider = await _repositoryManager.ServiceProviderRepository.GetServiceProviderByIdAsync(serviceProviderUpdateDto.Id, false)
+                ?? throw new ServiceProviderNotFoundException(serviceProviderUpdateDto.Id);
             var serviceProviderFromDto = _mapper.Map<ServiceProvider>(serviceProviderUpdateDto);
             _repositoryManager.ServiceProviderRepository.UpdateServiceProvider(serviceProviderFromDto);
             await _repositoryManager.SaveChangesAsync();
+        }
+    }
 }
+

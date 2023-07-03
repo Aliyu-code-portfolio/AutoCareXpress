@@ -15,7 +15,7 @@ namespace ACX.ServiceContract.Interfaces
         Task<UserDisplayDto> GetUserById(Guid id);
         Task<UserDisplayDto> GetUserByEmail(string email);
         Task<UserDisplayDto> CreateUser(UserCreationDto userCreationDto);
-        void UpdateUser(Guid userId, UserUpdateDto userUpdateDto);
+        void UpdateUser(UserUpdateDto userUpdateDto);
         void DeleteUser(Guid id);
     }
 }

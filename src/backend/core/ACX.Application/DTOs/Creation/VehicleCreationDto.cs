@@ -11,9 +11,7 @@ namespace ACX.Application.DTOs.Creation
 {
     public record VehicleCreationDto
     {
-        public int Id { get; set; }
 
-        [ForeignKey(nameof(User))]
         public Guid UserId { get; init; }
 
         [Required(ErrorMessage = "Name is required")]

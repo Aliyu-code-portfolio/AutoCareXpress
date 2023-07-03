@@ -16,7 +16,7 @@ namespace ACX.ServiceContract.Interfaces
         Task<ServiceProviderDisplayDto> GetServiceProviderByEmail(string email);
         Task<ServiceProviderDisplayDto> GerServiceProviderByRegNumber(string regNumber);
         Task<ServiceProviderDisplayDto> CreateServiceProvider(ServiceProviderCreationDto serviceProviderCreationDto);
-        void UpdateServiceProvider(Guid id, ServiceProviderUpdateDto serviceProviderUpdateDto);
+        void UpdateServiceProvider(ServiceProviderUpdateDto serviceProviderUpdateDto);
         void DeleteServiceProvider(Guid id);
     }
 }

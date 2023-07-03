@@ -11,12 +11,9 @@ namespace ACX.Application.DTOs.Creation
 {
     public record ProviderServiceCreationDto
     {
-        public int Id { get; init; }
 
-        [ForeignKey(nameof(Ref_Service_Type))]
         public int Ref_Service_Type_ID { get; init; }
 
-        [ForeignKey(nameof(ServiceProvider))]
         public Guid ServiceProviderId { get; init; }
 
         [Range(0, double.MaxValue, ErrorMessage = "Minimum price must be a non-negative number.")]

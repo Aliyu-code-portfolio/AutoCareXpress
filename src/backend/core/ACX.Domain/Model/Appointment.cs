@@ -13,18 +13,19 @@ namespace ACX.Domain.Model
         public Guid ServiceProviderId { get; set; }
 
         [ForeignKey(nameof(ProviderService))]
-        public Guid ProviderServiceId { get; set; }
+        public int ProviderServiceId { get; set; }
 
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
 
         [ForeignKey(nameof(Ref_Service_Type))]
-        public Guid Ref_Service_Type_Id { get; set; }
+        public int Ref_Service_Type_Id { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateCompleted { get; set; }
-
+        [StringLength(int.MaxValue)]
+        public string? Description { get; set; }
         public bool Status { get; set; } = false;
 
         //Navigational properties

@@ -13,20 +13,18 @@ namespace ACX.Application.DTOs.Display
     {
         public int Id { get; init; }
 
-        [ForeignKey(nameof(ServiceProvider))]
-        public Guid ServiceProviderId { get; init; }
+        public Guid ServiceProviderId { get; init; }//use to pull from db
 
-        [ForeignKey(nameof(ProviderService))]
         public Guid ProviderServiceId { get; init; }
 
-        [ForeignKey(nameof(User))]
         public Guid UserId { get; init; }
 
-        [ForeignKey(nameof(Ref_Service_Type))]
-        public Guid Ref_Service_Type_Id { get; init; }
+        public int Ref_Service_Type_Id { get; init; }//use to pull from db
+        public string? Description { get; set; }
 
-        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateCompleted { get; init; }
+        public ServiceProviderDisplayDto? ServiceProviderDisplayDto { get; set; }
+        public Ref_Service_Type_Display_Dto? Ref_Service_Type_Display_Dto { get; set; }
     }
 }

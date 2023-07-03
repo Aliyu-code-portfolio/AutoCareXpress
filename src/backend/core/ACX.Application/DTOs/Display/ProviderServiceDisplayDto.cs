@@ -13,13 +13,12 @@ namespace ACX.Application.DTOs.Display
     {
         public int Id { get; init; }
 
-        [ForeignKey(nameof(Ref_Service_Type))]
-        public int Ref_Service_Type_ID { get; init; }
 
-        [ForeignKey(nameof(ServiceProvider))]
-        public Guid ServiceProviderId { get; init; }
+        public Guid ServiceProviderId { get; init; }//use the id to pull data and place into the individual dto
+        public int Ref_Service_Type_ID { get; init; }//use the id to pull data and place into the individual dto
 
-        [Range(0, double.MaxValue, ErrorMessage = "Minimum price must be a non-negative number.")]
         public decimal MinPrice { get; init; }
+        public ServiceProviderDisplayDto? ServiceProviderDisplayDto { get; set; }
+        public Ref_Service_Type_Display_Dto? Ref_Service_Type_Display_Dto { get; set; }
     }
 }

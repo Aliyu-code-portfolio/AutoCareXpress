@@ -9,6 +9,7 @@ namespace ACX.Application.DTOs.Update
 {
     public record VehicleUpdateDto
     {
+        public int Id { get; set; }
         public Guid UserId { get; init; }
 
         [Required(ErrorMessage = "Name is required")]

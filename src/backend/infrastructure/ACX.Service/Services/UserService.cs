@@ -59,10 +59,10 @@ namespace ACX.Service.Services
             return userDto;
         }
 
-        public async void UpdateUser(Guid userId, UserUpdateDto userUpdateDto)
+        public async void UpdateUser(UserUpdateDto userUpdateDto)
         {
-            var user = await _repositoryManager.UserRepository.GetUserByIdAsync(userId, false)
-                ?? throw new UserNotFoundException(userId);
+            var user = await _repositoryManager.UserRepository.GetUserByIdAsync(userUpdateDto.Id, false)
+                ?? throw new UserNotFoundException(userUpdateDto.Id);
             var userFromDto = _mapper.Map<User>(userUpdateDto);
             _repositoryManager.UserRepository.UpdateUser(userFromDto);
             await _repositoryManager.SaveChangesAsync();

@@ -11,25 +11,20 @@ namespace ACX.Application.DTOs.Creation
 {
     public record AppointmentCreationDto
     {
-        public int Id { get; init; }
 
-        [ForeignKey(nameof(ServiceProvider))]
         public Guid ServiceProviderId { get; init; }
 
-        [ForeignKey(nameof(ProviderService))]
         public Guid ProviderServiceId { get; init; }
 
-        [ForeignKey(nameof(User))]
         public Guid UserId { get; init; }
 
-        [ForeignKey(nameof(Ref_Service_Type))]
         public Guid Ref_Service_Type_Id { get; init; }
+        [StringLength(int.MaxValue)]
+        public string? Description { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateCompleted { get; init; }
-
-        public bool Status { get; init; } = false;
 
     }
 }
