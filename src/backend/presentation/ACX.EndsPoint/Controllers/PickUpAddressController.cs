@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [Route("api/pickup")]
+    [ApiController]
     public class PickUpAddressController: ControllerBase
     {
         private readonly IServiceManager _serviceManager;

@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [Route("api/services")]
+    [ApiController]
     public class ProviderServicesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;

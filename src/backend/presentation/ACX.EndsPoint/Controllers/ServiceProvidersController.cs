@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ACX.EndsPoint.Controllers
 {
-    [Route("api/serviceproviders")]
+    [Route("api/providers")]
     [ApiController]
     public class ServiceProvidersController : ControllerBase
     {
@@ -64,7 +64,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // DELETE 
-        [HttpDelete("{id:Guid}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteServiceProvider(Guid id)
         {
             _serviceManager.ServiceProviderService.DeleteServiceProvider(id);

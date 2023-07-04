@@ -1,5 +1,6 @@
 ﻿using ACX.Application.Common;
 using ACX.Application.Contract;
+using ACX.Persistence.Repositories;
 using System;
 
 namespace ACX.Persistence.Common
@@ -14,11 +15,18 @@ namespace ACX.Persistence.Common
         private Lazy<IProviderServiceRepository> providerServiceRepository;
         private Lazy<IRef_Service_Location_Repository> refServiceLocationRepository;
         private Lazy<IRef_Service_Type_Repository> refServiceTypeRepository;
+
         private readonly RepositoryContext _context;
         public RepositoryManager(RepositoryContext context)
         {
-            //userRepository = new Lazy<IUserRepository>(()=> new UserRepository(context
-            //
+            userRepository = new Lazy<IUserRepository>(()=> new UserRepository(context));
+            serviceProviderRepository = new Lazy<IServiceProviderRepository>(()=> new ServiceProviderRepository(context));
+            pickUpAddress_Repository = new Lazy<IPickUpAddress_Repository>(()=> new PickUpAddress_Repository(context));
+            vehicleRepository =new Lazy<IVehicle_Repository>(()=>new  VehicleRepsoitory(context));
+            appointmentRepository = new Lazy<IAppointmentRepository>(()=>new AppointmentRepository(context));
+            providerServiceRepository =new Lazy<IProviderServiceRepository>(()=>new ProviderServiceRepository(context));
+            refServiceLocationRepository = new Lazy<IRef_Service_Location_Repository>(()=>new Ref_Service_Location_Repository(context));
+            refServiceTypeRepository = new Lazy<IRef_Service_Type_Repository>(()=>new Ref_Service_Type_Repository(context));
             _context = context;
         }
 

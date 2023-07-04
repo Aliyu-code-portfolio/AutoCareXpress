@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ACX.EndsPoint.Controllers
 {
-    [Route("api/ref_service_locations")]
+    [Route("api/servicelocations")]
     [ApiController]
     public class Ref_Service_Locations_Controller : ControllerBase
     {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -48,7 +49,7 @@ namespace ACX.EndsPoint.Controllers
 
         // DELETE 
         [HttpDelete("{id:Guid}")]
-        public async Task<ActionResult> DeleteUser(Guid id)
+        public ActionResult DeleteUser(Guid id)
         {
             _serviceManager.UserService.DeleteUser(id);
             return NoContent();

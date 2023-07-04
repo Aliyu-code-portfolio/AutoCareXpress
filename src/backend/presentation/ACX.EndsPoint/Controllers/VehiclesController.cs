@@ -23,7 +23,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // GET
-        [HttpGet]
+        [HttpGet("{userId}")]
         public async Task<ActionResult> GetAllUserVehicles(Guid userId, bool trackChanges)
         {
             var result = await _serviceManager.VehicleService.GetAllUserVehicles(userId, trackChanges);
@@ -55,7 +55,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // DELETE 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteVehicle(int id)
         {
             _serviceManager.VehicleService.DeleteVehicle(id);

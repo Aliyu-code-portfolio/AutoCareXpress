@@ -16,6 +16,7 @@ namespace ACX.Domain.Model
         public Guid ServiceProviderId { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "Minimum price must be a non-negative number.")]
+        [Column(TypeName ="money")]
         public decimal MinPrice { get; set; }
 
         //Navigational properties

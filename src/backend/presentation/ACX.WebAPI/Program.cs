@@ -2,7 +2,6 @@ using ACX.Application.Common;
 using ACX.WebAPI.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +9,12 @@ LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nl
 // Add services to the container.
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
+builder.Services.ConfigureSQLDatabase(builder.Configuration);
 builder.Services.ConfigureLoggerService();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.ConfigureRepositoryManager();
+builder.Services.ConfigureServiceManager();
+builder.Services.ConfigureVersioning();
 
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(ACX.EndsPoint.AssemblyReference).Assembly);

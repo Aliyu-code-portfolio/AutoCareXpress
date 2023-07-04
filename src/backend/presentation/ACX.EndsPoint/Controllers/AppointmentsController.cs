@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [Route("api/appointments")]
+    [ApiController]
     public class AppointmentsController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -29,7 +31,7 @@ namespace ACX.EndsPoint.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
-            var result = await _serviceManager.AppointmentService.GetAppointmentById (id);
+            var result = await _serviceManager.AppointmentService.GetAppointmentById(id);
             return Ok(result);
         }
 
@@ -40,8 +42,6 @@ namespace ACX.EndsPoint.Controllers
             var result = await _serviceManager.AppointmentService.CreateAppointment(appointmentsCreationDto);
             return CreatedAtAction(nameof(GetById), new { id = result.Id });
         }
-
-        
 
         // DELETE 
         [HttpDelete("{id:Guid}")]
