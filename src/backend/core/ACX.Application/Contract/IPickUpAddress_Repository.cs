@@ -12,6 +12,7 @@ namespace ACX.Application.Contract
     {
         Task<IEnumerable<PickUpAddress>> GetAllPickUpAddress(bool trackChanges);
         Task<PickUpAddress> GetPickUpAddressByUserId(Guid userId, bool trackChanges);
+        void CreatePickUpAddress(PickUpAddress pickUpAddress);
         void UpdatePickUpAddress(PickUpAddress pickUpAddress);
         void DeletePickUpAddress(PickUpAddress pickUpAddress);
     }

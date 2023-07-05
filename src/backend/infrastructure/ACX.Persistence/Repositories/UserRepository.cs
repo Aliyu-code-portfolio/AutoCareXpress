@@ -1,6 +1,8 @@
 ﻿using ACX.Application.Contract;
 using ACX.Domain.Model;
 using ACX.Persistence.Common;
+using ACX.Shared.RequestFeatures;
+using ACX.Shared.RequestFeatures.ModelRequestParameters;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,10 +28,12 @@ namespace ACX.Persistence.Repositories
             Delete(user);
         }
 
-        public async Task<IEnumerable<User>> GetAllUserAsync(bool trackChanges)
+        public async Task<PagedList<User>> GetAllUserAsync(UserRequestParameter requestParameter, bool trackChanges)
         {
-            var users = await FindAll(trackChanges).ToListAsync();
-            return users;
+            var users = await FindAll(trackChanges).Skip((requestParameter.PageNumber-1)*requestParameter.PageSize)
+                .Take(requestParameter.PageSize).Where(p => p.Name.ToLower().Contains(requestParameter.SearchTerm.ToLower())).ToListAsync();
+            var count = await FindAll(false).CountAsync();
+            return new PagedList<User>(users,count,requestParameter.PageNumber,requestParameter.PageSize);
         }
 
         public async Task<User> GetUserByIdAsync(Guid id, bool trackChanges)
@@ -40,7 +44,7 @@ namespace ACX.Persistence.Repositories
 
         public async Task<User> GetUserByEmailAsync(string email, bool trackChanges)
         {
-            var user = await FindByCondition(u => u.Email.Contains(email), trackChanges).FirstOrDefaultAsync();
+            var user = await FindByCondition(u => u.Email.ToLower().Contains(email.ToLower()), trackChanges).FirstOrDefaultAsync();
             return user;
         }
 

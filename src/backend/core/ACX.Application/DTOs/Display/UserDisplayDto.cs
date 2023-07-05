@@ -14,7 +14,7 @@ namespace ACX.Application.DTOs.Display
 
         public string? Email { get; init; }
 
-        public int? Phone { get; init; }
+        public string? Phone { get; init; }
 
         public char? Gender { get; init; }
     }

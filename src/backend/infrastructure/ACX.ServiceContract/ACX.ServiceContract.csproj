@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\ACX.Application\ACX.Application.csproj" />
+    <ProjectReference Include="..\ACX.Shared\ACX.Shared.csproj" />
   </ItemGroup>
 
 </Project>

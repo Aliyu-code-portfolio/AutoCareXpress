@@ -32,7 +32,7 @@ namespace ACX.Service.Services
             return vehicleDto;
         }
 
-        public async void DeleteVehicle(int id)
+        public async Task DeleteVehicle(int id)
         {
             var vehicle = await _repositoryManager.Vehicle_Repository.GetVehicleById(id, false)
                 ?? throw new VehicleNotFoundException(id);
@@ -62,9 +62,9 @@ namespace ACX.Service.Services
             return vehicleDto;
         }
 
-        public async void UpdateVehicle(VehicleUpdateDto vehicleUpdateDto)
+        public async Task UpdateVehicle(VehicleUpdateDto vehicleUpdateDto)
         {
-            var vehicle = await _repositoryManager.Vehicle_Repository.GetVehicleById(vehicleUpdateDto.Id, false)
+            _ = await _repositoryManager.Vehicle_Repository.GetVehicleById(vehicleUpdateDto.Id, false)
                 ?? throw new VehicleNotFoundException(vehicleUpdateDto.Id);
             var vehicleFromDto = _mapper.Map<Vehicle>(vehicleUpdateDto);
             _repositoryManager.Vehicle_Repository.UpdateVehicle(vehicleFromDto);

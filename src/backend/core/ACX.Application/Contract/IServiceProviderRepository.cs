@@ -1,4 +1,6 @@
 ﻿using ACX.Domain.Model;
+using ACX.Shared.RequestFeatures;
+using ACX.Shared.RequestFeatures.ModelRequestParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace ACX.Application.Contract
 {
     public interface IServiceProviderRepository
     {
-        Task<IEnumerable<ServiceProvider>> GetAllServiceProviderAsync(bool trackChanges);
+        Task<PagedList<ServiceProvider>> GetAllServiceProviderAsync(ProviderRequestParameter requestParameter, bool trackChanges);
         Task<ServiceProvider> GetServiceProviderByIdAsync(Guid id, bool trackChanges);
         Task<ServiceProvider> GetServiceProviderByRegNumberAsync(string regNumber, bool trackChanges);
         Task<ServiceProvider> GetServiceProviderByEmailAsync(string email, bool trackChanges);

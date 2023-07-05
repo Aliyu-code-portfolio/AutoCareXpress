@@ -1,7 +1,11 @@
 ﻿using ACX.Application.DTOs.Creation;
 using ACX.Application.DTOs.Update;
+using ACX.EndsPoint.ActionFilters;
 using ACX.ServiceContract.Common;
+using ACX.Shared.RequestFeatures.ModelRequestParameters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 
 namespace ACX.EndsPoint.Controllers
 {
@@ -17,15 +21,18 @@ namespace ACX.EndsPoint.Controllers
         }
         // GET
         [HttpGet]
-        public async Task<ActionResult> GetAllUsers()
+        [HttpHead]
+        public async Task<ActionResult> GetAllUsers([FromQuery] UserRequestParameter requestParameter)
         {
-            var result = await _serviceManager.UserService.GetAllUsers();
-            return Ok(result);
+            var result = await _serviceManager.UserService.GetAllUsers(requestParameter);
+            Response.Headers.Add("X-Pagination",
+                JsonSerializer.Serialize(result.MetaData));      
+            return Ok(result.Users);
         }
 
         // GET id
-        [HttpGet("{id}")]
-        public async Task<ActionResult> GetById(Guid id)
+        [HttpGet("{id}", Name = "GetUserById")]
+        public async Task<ActionResult> GetUserById(Guid id)
         {
             var result = await _serviceManager.UserService.GetUserById(id);
             return Ok(result);
@@ -33,26 +40,33 @@ namespace ACX.EndsPoint.Controllers
 
         // POST 
         [HttpPost]
+        //[ServiceFilter(typeof(ValidationActionFilter))]
         public async Task<ActionResult> Post([FromBody] UserCreationDto userCreationDto)
         {
             var result = await _serviceManager.UserService.CreateUser(userCreationDto);
-            return CreatedAtAction(nameof(GetById), new {id=result.Id});
+            return CreatedAtAction(nameof(GetUserById), new {id=result.Id}, result);
         }
 
         // PUT 
         [HttpPut()]
-        public ActionResult Put([FromBody] UserUpdateDto userUpdateDto)
+        public async Task<ActionResult> Put([FromBody] UserUpdateDto userUpdateDto)
         {
-            _serviceManager.UserService.UpdateUser(userUpdateDto);
+            await _serviceManager.UserService.UpdateUser(userUpdateDto);
             return NoContent();
         }
 
         // DELETE 
         [HttpDelete("{id:Guid}")]
-        public ActionResult DeleteUser(Guid id)
+        public async Task<ActionResult> DeleteUser(Guid id)
         {
-            _serviceManager.UserService.DeleteUser(id);
+            await _serviceManager.UserService.DeleteUser(id);
             return NoContent();
         }
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST, PUT");
+            return Ok();
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace ACX.Application.DTOs.Display
 
         public int Ref_Service_Type_Id { get; init; }//use to pull from db
         public string? Description { get; set; }
+        public int? RateService { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DateCompleted { get; init; }

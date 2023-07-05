@@ -27,6 +27,8 @@ namespace ACX.Domain.Model
         [StringLength(int.MaxValue)]
         public string? Description { get; set; }
         public bool Status { get; set; } = false;
+        [Range(0, 5,ErrorMessage ="Rating must be in the range 0 - 5")]
+        public int? RateService { get; set; }
 
         //Navigational properties
         public virtual User? User { get; set; }

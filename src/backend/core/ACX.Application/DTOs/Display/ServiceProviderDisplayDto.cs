@@ -19,6 +19,7 @@ namespace ACX.Application.DTOs.Display
         public int CompanyPhone { get; init; }
 
         public string? RegistrationNumber { get; init; }
+        public int? OverallServiceRating { get; set; }
 
         [ForeignKey(nameof(Ref_Service_Location))]
         public int Ref_Service_Location_Id { get; init; }

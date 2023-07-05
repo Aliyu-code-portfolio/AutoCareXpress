@@ -20,6 +20,8 @@ namespace ACX.Application.DTOs.Update
         [Required(ErrorMessage = "Company phone number is required.")]
         [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Company phone number must be a 10-digit number.")]
         public int CompanyPhone { get; init; }
+        [Range(0, 5, ErrorMessage = "Rating must be in the range 0 - 5")]
+        public int? OverallServiceRating { get; set; }
 
         [ForeignKey(nameof(Ref_Service_Location))]
         public int Ref_Service_Location_Id { get; init; }

@@ -1,4 +1,6 @@
 ﻿using ACX.Domain.Model;
+using ACX.Shared.RequestFeatures;
+using ACX.Shared.RequestFeatures.ModelRequestParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace ACX.Application.Contract
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllUserAsync(bool trackChanges);
+        Task<PagedList<User>> GetAllUserAsync(UserRequestParameter requestParameter, bool trackChanges);
         Task<User> GetUserByIdAsync(Guid id, bool trackChanges);
         Task<User> GetUserByEmailAsync(string email, bool trackChanges);
         void CreateUser(User user);

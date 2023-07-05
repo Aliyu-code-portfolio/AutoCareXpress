@@ -1,4 +1,5 @@
 using ACX.Application.Common;
+using ACX.EndsPoint.ActionFilters;
 using ACX.WebAPI.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
@@ -14,6 +15,7 @@ builder.Services.ConfigureLoggerService();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
+builder.Services.AddScoped<ValidationActionFilter>();
 builder.Services.ConfigureVersioning();
 
 builder.Services.AddControllers()

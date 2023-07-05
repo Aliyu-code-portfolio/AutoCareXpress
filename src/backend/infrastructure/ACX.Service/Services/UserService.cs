@@ -5,6 +5,8 @@ using ACX.Application.DTOs.Update;
 using ACX.Application.Exceptions.SubExceptions;
 using ACX.Domain.Model;
 using ACX.ServiceContract.Interfaces;
+using ACX.Shared.RequestFeatures;
+using ACX.Shared.RequestFeatures.ModelRequestParameters;
 using AutoMapper;
 using System;
 
@@ -28,7 +30,7 @@ namespace ACX.Service.Services
             return userDto;
         }
 
-        public async void DeleteUser(Guid id)
+        public async Task DeleteUser(Guid id)
         {
             var user = await _repositoryManager.UserRepository.GetUserByIdAsync(id, false)
                 ?? throw new UserNotFoundException(id);
@@ -36,11 +38,11 @@ namespace ACX.Service.Services
             await _repositoryManager.SaveChangesAsync();    
         }
 
-        public async Task<IEnumerable<UserDisplayDto>> GetAllUsers()
+        public async Task<(IEnumerable<UserDisplayDto> Users,MetaData MetaData)> GetAllUsers(UserRequestParameter requestParameter)
         {
-            var users = await _repositoryManager.UserRepository.GetAllUserAsync(false);
+            var users = await _repositoryManager.UserRepository.GetAllUserAsync(requestParameter, false);
             var usersDto = _mapper.Map<IEnumerable<UserDisplayDto>>(users);
-            return usersDto;
+            return (usersDto,users.MetaData);
         }
 
         public async Task<UserDisplayDto> GetUserByEmail(string email)
@@ -59,7 +61,7 @@ namespace ACX.Service.Services
             return userDto;
         }
 
-        public async void UpdateUser(UserUpdateDto userUpdateDto)
+        public async Task UpdateUser(UserUpdateDto userUpdateDto)
         {
             var user = await _repositoryManager.UserRepository.GetUserByIdAsync(userUpdateDto.Id, false)
                 ?? throw new UserNotFoundException(userUpdateDto.Id);

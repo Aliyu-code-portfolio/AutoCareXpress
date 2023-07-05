@@ -1,4 +1,5 @@
-﻿using ACX.Application.DTOs.Display;
+﻿using ACX.Application.DTOs.Creation;
+using ACX.Application.DTOs.Display;
 using ACX.Application.DTOs.Update;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace ACX.ServiceContract.Interfaces
     public interface IPickUpAddressService
     {
         Task<PickUpAddressDisplayDto> GetUserPickUpAddress(Guid userId, bool trackChanges);
-        void UpdatePickUpAddress(PickUpAddressUpdateDto pickUpAddressUpdateDto);
-        void DeletePickUpAddress(Guid id);
+        Task<PickUpAddressDisplayDto> CreateUserPickUpAddress(PickUpAddressCreationDto pickUpAddressCreationDto);
+        Task UpdatePickUpAddress(PickUpAddressUpdateDto pickUpAddressUpdateDto);
+        Task DeletePickUpAddress(Guid id);
     }
 }

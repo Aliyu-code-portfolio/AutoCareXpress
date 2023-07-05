@@ -1,10 +1,14 @@
 ﻿using ACX.Application.DTOs.Creation;
 using ACX.Application.DTOs.Update;
 using ACX.ServiceContract.Common;
+using ACX.Shared.RequestFeatures.ModelRequestParameters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/providers")]
     [ApiController]
     public class ServiceProvidersController : ControllerBase
@@ -17,10 +21,14 @@ namespace ACX.EndsPoint.Controllers
 
         // GET
         [HttpGet]
-        public async Task<ActionResult> GetAllServiceProviders()
+        [HttpHead]
+        public async Task<ActionResult> GetAllServiceProviders([FromQuery] ProviderRequestParameter requestParameter)
         {
-            var result = await _serviceManager.ServiceProviderService.GetAllServiceProviders();
-            return Ok(result);
+            var result = await _serviceManager.ServiceProviderService.GetAllServiceProviders(requestParameter);
+            Response.Headers.Add("X-Pagination",
+                JsonSerializer.Serialize(result.MetaData));
+
+            return Ok(result.Providers);
         }
 
         // GET id
@@ -57,9 +65,9 @@ namespace ACX.EndsPoint.Controllers
 
         // PUT 
         [HttpPut()]
-        public ActionResult Put([FromBody] ServiceProviderUpdateDto serviceProviderUpdateDto)
+        public async Task<ActionResult> Put([FromBody] ServiceProviderUpdateDto serviceProviderUpdateDto)
         {
-            _serviceManager.ServiceProviderService.UpdateServiceProvider(serviceProviderUpdateDto);
+            await _serviceManager.ServiceProviderService.UpdateServiceProvider(serviceProviderUpdateDto);
             return NoContent();
         }
 
@@ -67,8 +75,14 @@ namespace ACX.EndsPoint.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteServiceProvider(Guid id)
         {
-            _serviceManager.ServiceProviderService.DeleteServiceProvider(id);
+            await _serviceManager.ServiceProviderService.DeleteServiceProvider(id);
             return NoContent();
+        }
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST, PUT");
+            return Ok();
         }
     }
 }

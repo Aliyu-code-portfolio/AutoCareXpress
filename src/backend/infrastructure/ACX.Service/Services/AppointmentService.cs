@@ -5,6 +5,8 @@ using ACX.Application.DTOs.Update;
 using ACX.Application.Exceptions.SubExceptions;
 using ACX.Domain.Model;
 using ACX.ServiceContract.Interfaces;
+using ACX.Shared.RequestFeatures;
+using ACX.Shared.RequestFeatures.ModelRequestParameters;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -32,7 +34,7 @@ namespace ACX.Service.Services
             return appointmentDto;
         }
 
-        public async void DeleteAppointment(int id)
+        public async Task DeleteAppointment(int id)
         {
             var appointment = await _repositoryManager.AppointmentRepository.GetAppointmentByIdAsync(id, false)
                 ?? throw new AppointmentNotFoundException(id);
@@ -40,9 +42,9 @@ namespace ACX.Service.Services
             await _repositoryManager.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<AppointmentDisplayDto>> GetAllAppointments(bool trackChanges)
+        public async Task<(IEnumerable<AppointmentDisplayDto> Appointments, MetaData MetaData)> GetAllAppointments(AppointmentRequestParameters requestParameters, bool trackChanges)
         {
-            var appointments = await _repositoryManager.AppointmentRepository.GetAllAppointmentAsync(false);
+            var appointments = await _repositoryManager.AppointmentRepository.GetAllAppointmentAsync(requestParameters, false);
             var appointmentDto = _mapper.Map<IEnumerable<AppointmentDisplayDto>>(appointments);
             foreach(var appointment in appointmentDto)
             {
@@ -59,12 +61,12 @@ namespace ACX.Service.Services
                 appointment.ServiceProviderDisplayDto=serviceProviderDto;
                 appointment.Ref_Service_Type_Display_Dto = serviceTypeDto;
             }
-            return appointmentDto;
+            return (appointmentDto,appointments.MetaData);
         }
 
-        public async Task<IEnumerable<AppointmentDisplayDto>> GetAllServiceProviderAppointments(Guid providerId, bool trackChanges)
+        public async Task<(IEnumerable<AppointmentDisplayDto> Appointments, MetaData MetaData)> GetAllServiceProviderAppointments(Guid providerId, AppointmentRequestParameters requestParameters,  bool trackChanges)
         {
-            var appointments = await _repositoryManager.AppointmentRepository.GetAppointmentsByServiceProviderIdAsync(providerId, false);
+            var appointments = await _repositoryManager.AppointmentRepository.GetAppointmentsByServiceProviderIdAsync(providerId,requestParameters, false);
             var appointmentDto = _mapper.Map<IEnumerable<AppointmentDisplayDto>>(appointments);
             foreach (var appointment in appointmentDto)
             {
@@ -81,12 +83,12 @@ namespace ACX.Service.Services
                 appointment.ServiceProviderDisplayDto = serviceProviderDto;
                 appointment.Ref_Service_Type_Display_Dto = serviceTypeDto;
             }
-            return appointmentDto;
+            return (appointmentDto,appointments.MetaData);
         }
 
-        public async Task<IEnumerable<AppointmentDisplayDto>> GetAllUserAppointments(Guid userId, bool trackChanges)
+        public async Task<(IEnumerable<AppointmentDisplayDto> Appointments, MetaData MetaData)> GetAllUserAppointments(Guid userId, AppointmentRequestParameters requestParameters, bool trackChanges)
         {
-            var appointments = await _repositoryManager.AppointmentRepository.GetAppointmentsByUserIdAsync(userId, false);
+            var appointments = await _repositoryManager.AppointmentRepository.GetAppointmentsByUserIdAsync(userId,requestParameters, false);
             var appointmentDto = _mapper.Map<IEnumerable<AppointmentDisplayDto>>(appointments);
             foreach (var appointment in appointmentDto)
             {
@@ -103,7 +105,7 @@ namespace ACX.Service.Services
                 appointment.ServiceProviderDisplayDto = serviceProviderDto;
                 appointment.Ref_Service_Type_Display_Dto = serviceTypeDto;
             }
-            return appointmentDto;
+            return (appointmentDto,appointments.MetaData);
         }
 
         public async Task<AppointmentDisplayDto> GetAppointmentById(int id)

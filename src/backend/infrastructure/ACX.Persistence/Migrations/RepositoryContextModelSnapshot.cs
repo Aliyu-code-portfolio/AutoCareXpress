@@ -44,13 +44,15 @@ namespace ACX.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ProviderServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RateService")
                         .HasColumnType("int");
 
                     b.Property<int>("Ref_Service_Type_Id")
@@ -101,7 +103,6 @@ namespace ACX.Persistence.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -140,7 +141,6 @@ namespace ACX.Persistence.Migrations
                         .HasColumnType("money");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -182,7 +182,6 @@ namespace ACX.Persistence.Migrations
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -196,6 +195,148 @@ namespace ACX.Persistence.Migrations
                     b.HasIndex("ServiceProviderId");
 
                     b.ToTable("Ref_Service_Locations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(602),
+                            Location = "Agege",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(689),
+                            Location = "Ajeromi-Ifelodun",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(694),
+                            Location = "Alimosho",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(698),
+                            Location = "Amuwo-Odofin",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(701),
+                            Location = "Apapa",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(714),
+                            Location = "Badagry",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(717),
+                            Location = "Epe",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(721),
+                            Location = "Eti-Osa",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(724),
+                            Location = "Ibeju/Lekki",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(729),
+                            Location = "Ifako-Ijaye",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(732),
+                            Location = "Ikeja",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(735),
+                            Location = "Ikorodu",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(739),
+                            Location = "Kosofe",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(742),
+                            Location = "Lagos Island",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(745),
+                            Location = "Lagos Mainland",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(749),
+                            Location = "Mushin",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(752),
+                            Location = "Ojo",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(756),
+                            Location = "Oshodi-Isolo",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(769),
+                            Location = "Shomolu",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(772),
+                            Location = "Surulere",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("ACX.Domain.Model.Ref_Service_Type", b =>
@@ -218,7 +359,6 @@ namespace ACX.Persistence.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -232,6 +372,48 @@ namespace ACX.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ref_Service_Types");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1277),
+                            Description = "Providing immediate assistance for breakdowns, flat tires, jump starts, etc.",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ServiceName = "Roadside Assistance"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1294),
+                            Description = "Offering routine maintenance services like oil changes, filter replacements, and brake inspections.",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ServiceName = "Maintenance Services"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1298),
+                            Description = "Handling repairs for various car components, including engines, brakes, electrical systems, etc.",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ServiceName = "Repairs"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1302),
+                            Description = "Providing services related to dents, scratches, and painting jobs.",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ServiceName = "Bodywork and Paint"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1305),
+                            Description = "Offering towing services for vehicles in need of transportation.",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ServiceName = "Towing"
+                        });
                 });
 
             modelBuilder.Entity("ACX.Domain.Model.ServiceProvider", b =>
@@ -250,8 +432,9 @@ namespace ACX.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("CompanyPhone")
-                        .HasColumnType("int");
+                    b.Property<string>("CompanyPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -260,11 +443,13 @@ namespace ACX.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("OverallServiceRating")
+                        .HasColumnType("int");
 
                     b.Property<int>("Ref_Service_Location_Id")
                         .HasColumnType("int");
@@ -299,7 +484,6 @@ namespace ACX.Persistence.Migrations
                         .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -309,8 +493,8 @@ namespace ACX.Persistence.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<int?>("Phone")
-                        .HasColumnType("int");
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -347,7 +531,6 @@ namespace ACX.Persistence.Migrations
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/services")]
     [ApiController]
     public class ProviderServicesController : ControllerBase
@@ -21,6 +22,7 @@ namespace ACX.EndsPoint.Controllers
         }
         // GET
         [HttpGet]
+        [HttpHead]
         public async Task<ActionResult> GetAllProvidersService()
         {
             var result = await _serviceManager.ProviderServiceService.GetAllProviderServices(trackChanges: false);
@@ -55,8 +57,14 @@ namespace ACX.EndsPoint.Controllers
         [HttpDelete("{id:Guid}")]
         public async Task<ActionResult> DeleteUser(Guid id)
         {
-            _serviceManager.UserService.DeleteUser(id);
+            await _serviceManager.UserService.DeleteUser(id);
             return NoContent();
+        }
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST");
+            return Ok();
         }
     }
 }

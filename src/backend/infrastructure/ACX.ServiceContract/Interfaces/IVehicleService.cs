@@ -15,7 +15,7 @@ namespace ACX.ServiceContract.Interfaces
         Task<IEnumerable<VehicleDisplayDto>> GetAllUserVehicles(Guid userId, bool trackChanges);
         Task<VehicleDisplayDto> GetVehicleById(int id);
         Task<VehicleDisplayDto> CreateVehicle(VehicleCreationDto vehicleCreationDto);
-        void UpdateVehicle(VehicleUpdateDto vehicleUpdateDto);
-        void DeleteVehicle(int id);
+        Task UpdateVehicle(VehicleUpdateDto vehicleUpdateDto);
+        Task DeleteVehicle(int id);
     }
 }

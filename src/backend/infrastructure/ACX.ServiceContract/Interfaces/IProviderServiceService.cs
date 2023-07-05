@@ -17,6 +17,6 @@ namespace ACX.ServiceContract.Interfaces
         Task<ProviderServiceDisplayDto> GetProviderServiceById(int id, bool trackChanges);
         Task<ProviderServiceDisplayDto> CreateProviderService(ProviderServiceCreationDto providerServiceCreationDto);
         //void UpdateProviderService(ProviderServiceUpdateDto providerServiceUpdateDto);
-        void DeleteProviderService(int id);
+        Task DeleteProviderService(int id);
     }
 }

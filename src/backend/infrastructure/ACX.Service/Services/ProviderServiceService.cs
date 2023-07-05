@@ -32,7 +32,7 @@ namespace ACX.Service.Services
             return serviceDto;
         }
 
-        public async void DeleteProviderService(int id)
+        public async Task DeleteProviderService(int id)
         {
             var service = await _repositoryManager.ProviderServiceRepository.GetProviderServiceByIdAsync(id, false)
                 ?? throw new ProviderServiceNotFoundException(id);

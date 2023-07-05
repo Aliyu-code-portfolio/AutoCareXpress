@@ -5,6 +5,8 @@ using ACX.Application.DTOs.Update;
 using ACX.Application.Exceptions.SubExceptions;
 using ACX.Domain.Model;
 using ACX.ServiceContract.Interfaces;
+using ACX.Shared.RequestFeatures;
+using ACX.Shared.RequestFeatures.ModelRequestParameters;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -33,7 +35,7 @@ namespace ACX.Service.Services
             return serviceProviderDto;
         }
 
-        public async void DeleteServiceProvider(Guid id)
+        public async Task DeleteServiceProvider(Guid id)
         {
             var serviceProvider = await _repositoryManager.ServiceProviderRepository.GetServiceProviderByIdAsync(id, false)
                 ?? throw new ServiceProviderNotFoundException(id);
@@ -50,12 +52,12 @@ namespace ACX.Service.Services
             return serviceProviderDto;
         }
 
-        public async Task<IEnumerable<ServiceProviderDisplayDto>> GetAllServiceProviders()
+        public async Task<(IEnumerable<ServiceProviderDisplayDto> Providers, MetaData MetaData)> GetAllServiceProviders(ProviderRequestParameter requestParameter)
         {
             var serviceProvider = await _repositoryManager.ServiceProviderRepository
-                .GetAllServiceProviderAsync(false);
+                .GetAllServiceProviderAsync(requestParameter, false);
             var serviceProviderDto = _mapper.Map<IEnumerable<ServiceProviderDisplayDto>>(serviceProvider);
-            return serviceProviderDto;
+            return (serviceProviderDto, serviceProvider.MetaData);
         }
 
         public async Task<ServiceProviderDisplayDto> GetServiceProviderByEmail(string email)
@@ -76,7 +78,7 @@ namespace ACX.Service.Services
             return serviceProviderDto;
         }
 
-        public async void UpdateServiceProvider(ServiceProviderUpdateDto serviceProviderUpdateDto)
+        public async Task UpdateServiceProvider(ServiceProviderUpdateDto serviceProviderUpdateDto)
         {
             var serviceProvider = await _repositoryManager.ServiceProviderRepository.GetServiceProviderByIdAsync(serviceProviderUpdateDto.Id, false)
                 ?? throw new ServiceProviderNotFoundException(serviceProviderUpdateDto.Id);

@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\infrastructure\ACX.Shared\ACX.Shared.csproj" />
-    <ProjectReference Include="..\ACX.Domain\ACX.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

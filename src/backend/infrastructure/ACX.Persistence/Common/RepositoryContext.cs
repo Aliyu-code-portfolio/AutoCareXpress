@@ -1,4 +1,5 @@
 ﻿using ACX.Domain.Model;
+using ACX.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,12 @@ namespace ACX.Persistence.Common
     {
         public RepositoryContext(DbContextOptions<RepositoryContext> options):base(options)
         {
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new ServiceLocationConfiguration());
+            modelBuilder.ApplyConfiguration(new ServiceTypeConfiguration());    
         }
         public DbSet<User> Users { get; set; }
         public DbSet<ServiceProvider> ServiceProviders { get; set; }

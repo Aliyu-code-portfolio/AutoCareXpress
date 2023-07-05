@@ -1,5 +1,6 @@
 ﻿using ACX.Application.DTOs.Creation;
 using ACX.Application.DTOs.Update;
+using ACX.EndsPoint.ActionFilters;
 using ACX.ServiceContract.Common;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/pickup")]
     [ApiController]
     public class PickUpAddressController: ControllerBase
@@ -22,20 +24,27 @@ namespace ACX.EndsPoint.Controllers
         
 
         // GET id
-        [HttpGet("{id}")]
-        public async Task<ActionResult> GetById(Guid id)
+        [HttpGet("{id:Guid}", Name = "GetPickUpById")]
+        [HttpHead]
+        public async Task<ActionResult> GetPickUpById(Guid id)
         {
             var result = await _serviceManager.PickUpAddressService.GetUserPickUpAddress(id, false);
             return Ok(result);
         }
 
-        
+        [HttpPost]
+        [ServiceFilter(typeof(ValidationActionFilter))]
+        public async Task<ActionResult> AddPickUpAddress(PickUpAddressCreationDto pickUpAddressCreationDto)
+        {
+            var result = await _serviceManager.PickUpAddressService.CreateUserPickUpAddress(pickUpAddressCreationDto);
+            return CreatedAtAction(nameof(GetPickUpById), new { id = result.userId },result);
+        }
 
         // PUT 
         [HttpPut()]
-        public ActionResult Put([FromBody] PickUpAddressUpdateDto pickUpAddressUpdateDto)
+        public async Task<ActionResult> Put([FromBody] PickUpAddressUpdateDto pickUpAddressUpdateDto)
         {
-            _serviceManager.PickUpAddressService.UpdatePickUpAddress(pickUpAddressUpdateDto);
+            await _serviceManager.PickUpAddressService.UpdatePickUpAddress(pickUpAddressUpdateDto);
             return NoContent();
         }
 
@@ -43,8 +52,14 @@ namespace ACX.EndsPoint.Controllers
         [HttpDelete("{id:Guid}")]
         public async Task<ActionResult> DeletePickUpAddress(Guid id)
         {
-            _serviceManager.PickUpAddressService.DeletePickUpAddress(id);
+            await _serviceManager.PickUpAddressService.DeletePickUpAddress(id);
             return NoContent();
+        }
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST, PUT");
+            return Ok();
         }
     }
 }

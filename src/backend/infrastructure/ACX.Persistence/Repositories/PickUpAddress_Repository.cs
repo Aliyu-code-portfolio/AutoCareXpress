@@ -16,6 +16,11 @@ namespace ACX.Persistence.Repositories
         {
         }
 
+        public void CreatePickUpAddress(PickUpAddress pickUpAddress)
+        {
+            Create(pickUpAddress);
+        }
+
         public void DeletePickUpAddress(PickUpAddress pickUpAddress)
         {
             Delete(pickUpAddress);

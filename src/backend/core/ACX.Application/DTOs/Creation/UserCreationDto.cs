@@ -16,9 +16,9 @@ namespace ACX.Application.DTOs.Creation
 
         [Required(ErrorMessage = "Password is required")]
         public string? Password { get; init; }
-        public ICollection<string>? Roles
+       /* public ICollection<string>? Roles
         {
             get; init;
-        }
+        }*/
     }
 }

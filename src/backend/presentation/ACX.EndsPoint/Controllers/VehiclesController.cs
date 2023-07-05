@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/vehicles")]
     [ApiController]
     public class VehiclesController : ControllerBase
@@ -16,6 +17,7 @@ namespace ACX.EndsPoint.Controllers
         }
         // GET
         [HttpGet]
+        [HttpHead]
         public async Task<ActionResult> GetAllVehicles(bool trackChanges)
         {
             var result = await _serviceManager.VehicleService.GetAllVehicles(trackChanges);
@@ -48,9 +50,9 @@ namespace ACX.EndsPoint.Controllers
 
         // PUT 
         [HttpPut()]
-        public ActionResult Put([FromBody] VehicleUpdateDto vehicleUpdateDto)
+        public async Task<ActionResult> Put([FromBody] VehicleUpdateDto vehicleUpdateDto)
         {
-            _serviceManager.VehicleService.UpdateVehicle(vehicleUpdateDto);
+            await _serviceManager.VehicleService.UpdateVehicle(vehicleUpdateDto);
             return NoContent();
         }
 
@@ -58,8 +60,14 @@ namespace ACX.EndsPoint.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteVehicle(int id)
         {
-            _serviceManager.VehicleService.DeleteVehicle(id);
+            await _serviceManager.VehicleService.DeleteVehicle(id);
             return NoContent();
+        }
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, POST, PUT");
+            return Ok();
         }
     }
 }

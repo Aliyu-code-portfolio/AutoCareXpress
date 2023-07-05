@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/refservicetypes")]
     [ApiController]
     public class Ref_Service_Types_Controller : ControllerBase
@@ -31,11 +32,17 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // GET name
-        [HttpGet("{name}")]
+        [HttpGet("name/{name}")]
         public async Task<ActionResult> GetServiceTypeByName(string name)
         {
             var result = await _serviceManager.Ref_Service_Type_Service.GetServiceTypeByName(name);
             return Ok(result);
+        }
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS");
+            return Ok();
         }
     }
 }

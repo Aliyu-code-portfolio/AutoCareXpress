@@ -1,5 +1,6 @@
 ﻿using ACX.Domain.Common;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ACX.Domain.Model
 {
@@ -18,8 +19,8 @@ namespace ACX.Domain.Model
         public string? Email { get; set; }
 
         //[Required(ErrorMessage = "Phone is required.")]
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Phone must be a 10-digit number.")]
-        public int? Phone { get; set; }
+        [RegularExpression(@"^[0-9]{11}$", ErrorMessage = "Phone must be a 11-digit number.")]
+        public string? Phone { get; set; }
 
         //[Required(ErrorMessage = "Gender is required.")]
         [RegularExpression("^[MF]$", ErrorMessage = "Gender must be either 'M' or 'F'.")]

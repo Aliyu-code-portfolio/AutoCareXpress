@@ -19,12 +19,15 @@ namespace ACX.Domain.Model
         public string? CompanyEmail { get; set; }
 
         [Required(ErrorMessage = "Company phone number is required.")]
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Company phone number must be a 10-digit number.")]
-        public int CompanyPhone { get; set; }
+        [RegularExpression(@"^[0-9]{11}$", ErrorMessage = "Phone must be a 11-digit number.")]
+        public string? CompanyPhone { get; init; }
 
 
         [StringLength(50, ErrorMessage = "Registration number must be between 1 and 50 characters.")]
         public string? RegistrationNumber { get; set; }
+
+        [Range(0, 5, ErrorMessage = "Service Rating must be in the range 0 - 5")]
+        public int? OverallServiceRating { get; set; }
 
         [ForeignKey(nameof(Ref_Service_Location))]
         public int Ref_Service_Location_Id { get; set; }

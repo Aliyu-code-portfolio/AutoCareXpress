@@ -1,6 +1,8 @@
 ﻿using ACX.Application.Common;
+using ACX.Application.DTOs.Creation;
 using ACX.Application.DTOs.Display;
 using ACX.Application.DTOs.Update;
+using ACX.Application.Exceptions;
 using ACX.Application.Exceptions.SubExceptions;
 using ACX.Domain.Model;
 using ACX.ServiceContract.Interfaces;
@@ -23,7 +25,22 @@ namespace ACX.Service.Services
             _repositoryManager = repositoryManager;
             _mapper = mapper;
         }
-        public async void DeletePickUpAddress(Guid id)
+
+        public async Task<PickUpAddressDisplayDto> CreateUserPickUpAddress(PickUpAddressCreationDto pickUpAddressCreationDto)
+        {
+            var addressFromDB = await _repositoryManager.PickUpAddress_Repository.GetPickUpAddressByUserId(pickUpAddressCreationDto.UserId,false);
+            if (addressFromDB is not null)
+            {
+                throw new CannotCreateException("The item already exists or something went wrong");
+            }
+            var address = _mapper.Map<PickUpAddress>(pickUpAddressCreationDto);
+            _repositoryManager.PickUpAddress_Repository.CreatePickUpAddress(address);
+            await _repositoryManager.SaveChangesAsync();
+            var addressDto = _mapper.Map<PickUpAddressDisplayDto>(address);
+            return addressDto;
+        }
+
+        public async Task DeletePickUpAddress(Guid id)
         {
             var address = await _repositoryManager.PickUpAddress_Repository.GetPickUpAddressByUserId(id, false)
                 ?? throw new PickUpAddressNotFoundException(id);
@@ -39,7 +56,7 @@ namespace ACX.Service.Services
             return addressDto;
         }
 
-        public async void UpdatePickUpAddress(PickUpAddressUpdateDto pickUpAddressUpdateDto)
+        public async Task UpdatePickUpAddress(PickUpAddressUpdateDto pickUpAddressUpdateDto)
         {
             var address = await _repositoryManager.PickUpAddress_Repository.GetPickUpAddressByUserId(pickUpAddressUpdateDto.UserId, false)
                ?? throw new PickUpAddressNotFoundException(pickUpAddressUpdateDto.UserId);

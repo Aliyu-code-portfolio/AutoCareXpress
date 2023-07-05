@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ACX.EndsPoint.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/servicelocations")]
     [ApiController]
     public class Ref_Service_Locations_Controller : ControllerBase
@@ -31,11 +32,17 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // GET name
-        [HttpGet("{name}")]
+        [HttpGet("name/{name}",Name = "GetServiceLocationByName")]
         public async Task<ActionResult> GetServiceLocationByName(string name)
         {
             var result = await _serviceManager.Ref_Service_Location_Service.GerServiceLocationByName(name);
             return Ok(result);
+        }
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS");
+            return Ok();
         }
     }
 }
