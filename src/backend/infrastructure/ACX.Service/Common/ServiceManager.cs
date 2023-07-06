@@ -28,6 +28,7 @@ namespace ACX.Service.Common
         private Lazy<IVehicleService> vehicleService;
 
         private Lazy<IAppointmentService> appointmentService;
+        private Lazy<IDoYouKnowService> doYouKnowService;
 
         public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper)
         {
@@ -39,6 +40,7 @@ namespace ACX.Service.Common
             pickUpAddressService = new Lazy<IPickUpAddressService>(() => new PickUpAddressService(repositoryManager, mapper));
             vehicleService = new Lazy<IVehicleService>(() => new VehicleService(repositoryManager, mapper));
             appointmentService = new Lazy<IAppointmentService>(() => new AppointmentService(repositoryManager, mapper));
+            doYouKnowService = new Lazy<IDoYouKnowService>(()=>new DoYouKnowService(repositoryManager, mapper));
         }
         public IUserService UserService => userService.Value;
 
@@ -55,5 +57,7 @@ namespace ACX.Service.Common
         public IVehicleService VehicleService => vehicleService.Value;
 
         public IAppointmentService AppointmentService => appointmentService.Value;
+
+        public IDoYouKnowService DoYouKnowService => doYouKnowService.Value;
     }
 }

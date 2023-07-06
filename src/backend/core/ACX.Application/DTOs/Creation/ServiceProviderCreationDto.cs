@@ -24,14 +24,14 @@ namespace ACX.Application.DTOs.Creation
         [RegularExpression(@"^[0-9]{11}$", ErrorMessage = "Phone must be a 11-digit number.")]
         public string? CompanyPhone { get; init; }
 
-
+        [Required(ErrorMessage = "Registration number is required")]
         [StringLength(50, ErrorMessage = "Registration number must be between 1 and 50 characters.")]
         public string? RegistrationNumber { get; init; }
 
         [Range(0, 5, ErrorMessage = "Rating must be in the range 0 - 5")]
         public int? OverallServiceRating { get; set; }
 
-        [ForeignKey(nameof(Ref_Service_Location))]
+        [Required(ErrorMessage = "Service Location ID is required")]
         public int Ref_Service_Location_Id { get; init; }
     }
 }

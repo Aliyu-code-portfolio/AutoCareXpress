@@ -31,6 +31,7 @@ namespace ACX.WebAPI.ProfileMapping
             CreateMap<ProviderServiceUpdateDto, ProviderService>();
             CreateMap<Ref_Service_Location, Ref_Service_Location_Display_Dto>();
             CreateMap<Ref_Service_Type, Ref_Service_Type_Display_Dto>();
+            CreateMap<DoYouKnow, DoYouKnowDisplayDto>();
         }
     }
 }

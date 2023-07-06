@@ -14,6 +14,24 @@ namespace ACX.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "DoYouKnows",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", maxLength: 2147483647, nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DoYouKnows", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Ref_Service_Types",
                 columns: table => new
                 {
@@ -220,26 +238,26 @@ namespace ACX.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Location", "ModifiedBy", "ModifiedDate", "ServiceProviderId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(602), "Agege", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 2, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(689), "Ajeromi-Ifelodun", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 3, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(694), "Alimosho", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 4, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(698), "Amuwo-Odofin", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 5, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(701), "Apapa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 6, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(714), "Badagry", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 7, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(717), "Epe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 8, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(721), "Eti-Osa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 9, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(724), "Ibeju/Lekki", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 10, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(729), "Ifako-Ijaye", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 11, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(732), "Ikeja", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 12, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(735), "Ikorodu", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 13, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(739), "Kosofe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 14, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(742), "Lagos Island", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 15, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(745), "Lagos Mainland", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 16, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(749), "Mushin", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 17, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(752), "Ojo", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 18, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(756), "Oshodi-Isolo", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 19, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(769), "Shomolu", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 20, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(772), "Surulere", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
+                    { 1, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9540), "Agege", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 2, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9607), "Ajeromi-Ifelodun", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 3, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9609), "Alimosho", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 4, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9611), "Amuwo-Odofin", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 5, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9613), "Apapa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 6, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9619), "Badagry", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 7, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9621), "Epe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 8, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9623), "Eti-Osa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 9, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9624), "Ibeju/Lekki", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 10, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9626), "Ifako-Ijaye", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 11, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9628), "Ikeja", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 12, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9630), "Ikorodu", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 13, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9632), "Kosofe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 14, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9633), "Lagos Island", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 15, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9634), "Lagos Mainland", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 16, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9636), "Mushin", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 17, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9637), "Ojo", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 18, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9640), "Oshodi-Isolo", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 19, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9641), "Shomolu", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 20, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9643), "Surulere", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
                 });
 
             migrationBuilder.InsertData(
@@ -247,11 +265,11 @@ namespace ACX.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "ModifiedBy", "ModifiedDate", "ServiceName" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1277), "Providing immediate assistance for breakdowns, flat tires, jump starts, etc.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Roadside Assistance" },
-                    { 2, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1294), "Offering routine maintenance services like oil changes, filter replacements, and brake inspections.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Maintenance Services" },
-                    { 3, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1298), "Handling repairs for various car components, including engines, brakes, electrical systems, etc.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Repairs" },
-                    { 4, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1302), "Providing services related to dents, scratches, and painting jobs.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bodywork and Paint" },
-                    { 5, null, new DateTime(2023, 7, 5, 22, 49, 28, 68, DateTimeKind.Local).AddTicks(1305), "Offering towing services for vehicles in need of transportation.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Towing" }
+                    { 1, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9906), "Providing immediate assistance for breakdowns, flat tires, jump starts, etc.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Roadside Assistance" },
+                    { 2, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9915), "Offering routine maintenance services like oil changes, filter replacements, and brake inspections.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Maintenance Services" },
+                    { 3, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9917), "Handling repairs for various car components, including engines, brakes, electrical systems, etc.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Repairs" },
+                    { 4, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9919), "Providing services related to dents, scratches, and painting jobs.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bodywork and Paint" },
+                    { 5, null, new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9920), "Offering towing services for vehicles in need of transportation.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Towing" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -291,6 +309,9 @@ namespace ACX.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Appointments");
+
+            migrationBuilder.DropTable(
+                name: "DoYouKnows");
 
             migrationBuilder.DropTable(
                 name: "PickUpAddresses");

@@ -25,10 +25,10 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // GET
-        [HttpGet("{userId}")]
-        public async Task<ActionResult> GetAllUserVehicles(Guid userId, bool trackChanges)
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult> GetAllUserVehicles(Guid userId)
         {
-            var result = await _serviceManager.VehicleService.GetAllUserVehicles(userId, trackChanges);
+            var result = await _serviceManager.VehicleService.GetAllUserVehicles(userId, false);
             return Ok(result);
         }
 

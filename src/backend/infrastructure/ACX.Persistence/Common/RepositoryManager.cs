@@ -15,6 +15,7 @@ namespace ACX.Persistence.Common
         private Lazy<IProviderServiceRepository> providerServiceRepository;
         private Lazy<IRef_Service_Location_Repository> refServiceLocationRepository;
         private Lazy<IRef_Service_Type_Repository> refServiceTypeRepository;
+        private Lazy<IDoYouKnowRepository> doYouKnowRepository;
 
         private readonly RepositoryContext _context;
         public RepositoryManager(RepositoryContext context)
@@ -27,6 +28,7 @@ namespace ACX.Persistence.Common
             providerServiceRepository =new Lazy<IProviderServiceRepository>(()=>new ProviderServiceRepository(context));
             refServiceLocationRepository = new Lazy<IRef_Service_Location_Repository>(()=>new Ref_Service_Location_Repository(context));
             refServiceTypeRepository = new Lazy<IRef_Service_Type_Repository>(()=>new Ref_Service_Type_Repository(context));
+            doYouKnowRepository = new Lazy<IDoYouKnowRepository>(()=>new DoYouKnowRepository(context));
             _context = context;
         }
 
@@ -46,6 +48,8 @@ namespace ACX.Persistence.Common
         public IRef_Service_Type_Repository Ref_Service_Type_Repository => refServiceTypeRepository.Value;
 
         public IRef_Service_Location_Repository Ref_Service_Location_Repository => refServiceLocationRepository.Value;
+
+        public IDoYouKnowRepository DoYouKnowRepository => doYouKnowRepository.Value;
 
         public async Task SaveChangesAsync()
         {

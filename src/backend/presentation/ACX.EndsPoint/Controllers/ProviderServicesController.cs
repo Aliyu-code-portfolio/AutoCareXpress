@@ -37,6 +37,23 @@ namespace ACX.EndsPoint.Controllers
             return Ok(result);
         }
 
+        // GET service type 
+        [HttpGet("servicetype/{id}")]
+        public async Task<ActionResult> GetByServiceType(int id)
+        {
+            var result = await _serviceManager.ProviderServiceService.GetProviderServicesByServiceType(id, false);
+            return Ok(result);
+        }
+
+        // GET id
+        [HttpGet("provider/{id}")]
+        public async Task<ActionResult> GetByProviderId(Guid id)
+        {
+            var result = await _serviceManager.ProviderServiceService.GetProviderServicesByServiceProviderId(id, false);
+            return Ok(result);
+        }
+
+
         // POST 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] ProviderServiceCreationDto providerServiceCreationDto)

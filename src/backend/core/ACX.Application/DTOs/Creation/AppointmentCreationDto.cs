@@ -19,7 +19,7 @@ namespace ACX.Application.DTOs.Creation
 
         [Required(ErrorMessage = "User ID is required")]
         public Guid UserId { get; init; }
-
+        [Required(ErrorMessage = "Service Type ID is required")]
         public int Ref_Service_Type_Id { get; init; }
         [StringLength(int.MaxValue)]
         public string? Description { get; set; }

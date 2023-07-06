@@ -28,5 +28,6 @@ namespace ACX.Persistence.Common
         public DbSet<ProviderService> ProviderServices { get; set; }
         public DbSet<Ref_Service_Location> Ref_Service_Locations { get; set; }
         public DbSet<Ref_Service_Type> Ref_Service_Types { get; set; }
+        public DbSet<DoYouKnow> DoYouKnows { get;set; }
     }
 }

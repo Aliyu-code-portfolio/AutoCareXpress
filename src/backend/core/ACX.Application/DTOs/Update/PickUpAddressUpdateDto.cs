@@ -9,6 +9,7 @@ namespace ACX.Application.DTOs.Update
 {
     public record PickUpAddressUpdateDto
     {
+        [Required(ErrorMessage = "User ID is required")]
         public Guid UserId { get; init; }
 
         [Required(ErrorMessage = "BuildingNumber is required")]

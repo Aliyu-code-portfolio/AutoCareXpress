@@ -11,11 +11,13 @@ namespace ACX.Application.DTOs.Update
 {
     public record ProviderServiceUpdateDto
     {
+        [Required(ErrorMessage = "ID is required")]
         public int Id { get; init; }
 
+        [Required(ErrorMessage = "Service Type ID is required")]
         public int Ref_Service_Type_ID { get; init; }
 
-
+        [Required(ErrorMessage = "Minumum price is required")]
         [Range(0, double.MaxValue, ErrorMessage = "Minimum price must be a non-negative number.")]
         public decimal MinPrice { get; init; }
     }

@@ -11,12 +11,13 @@ namespace ACX.Application.DTOs.Creation
 {
     public record ProviderServiceCreationDto
     {
-
+        [Required(ErrorMessage ="Service Type ID is required")]
         public int Ref_Service_Type_ID { get; init; }
-
+        [Required(ErrorMessage = "Provider ID is required")]
         public Guid ServiceProviderId { get; init; }
 
         [Range(0, double.MaxValue, ErrorMessage = "Minimum price must be a non-negative number.")]
+        [Required(ErrorMessage = "Minimum Price is required")]
         public decimal MinPrice { get; init; }
     }
 }

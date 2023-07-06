@@ -40,7 +40,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // GET email
-        [HttpGet("{email}")]
+        [HttpGet("email/{email}")]
         public async Task<ActionResult> GetByEmail(string email)
         {
             var result = await _serviceManager.ServiceProviderService.GetServiceProviderByEmail(email);
@@ -48,7 +48,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // GET regNumber
-        [HttpGet("{regNumber}")]
+        [HttpGet("regnumber/{regNumber}")]
         public async Task<ActionResult> GetByRegNumber(string regNumber)
         {
             var result = await _serviceManager.ServiceProviderService.GerServiceProviderByRegNumber(regNumber);

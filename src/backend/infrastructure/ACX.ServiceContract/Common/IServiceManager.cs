@@ -17,5 +17,6 @@ namespace ACX.ServiceContract.Common
         IPickUpAddressService PickUpAddressService { get; }
         IVehicleService VehicleService { get; }
         IAppointmentService AppointmentService { get; }
+        IDoYouKnowService DoYouKnowService { get; }
     }
 }

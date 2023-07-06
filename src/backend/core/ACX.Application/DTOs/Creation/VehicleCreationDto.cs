@@ -11,7 +11,7 @@ namespace ACX.Application.DTOs.Creation
 {
     public record VehicleCreationDto
     {
-
+        [Required(ErrorMessage = "User ID is required")]
         public Guid UserId { get; init; }
 
         [Required(ErrorMessage = "Name is required")]

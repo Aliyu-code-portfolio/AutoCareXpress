@@ -11,6 +11,7 @@ namespace ACX.Application.DTOs.Update
 {
     public record ServiceProviderUpdateDto
     {
+        [Required(ErrorMessage = "ID is required")]
         public Guid Id { get; init; }
         [Required(ErrorMessage = "Company name is required.")]
         [StringLength(50, ErrorMessage = "Company name must be between 1 and 50 characters.", MinimumLength = 1)]
@@ -18,11 +19,12 @@ namespace ACX.Application.DTOs.Update
 
 
         [Required(ErrorMessage = "Company phone number is required.")]
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Company phone number must be a 10-digit number.")]
-        public int CompanyPhone { get; init; }
+        [RegularExpression(@"^[0-9]{11}$", ErrorMessage = "Company phone number must be a 11-digit number.")]
+        public string? CompanyPhone { get; init; }
         [Range(0, 5, ErrorMessage = "Rating must be in the range 0 - 5")]
         public int? OverallServiceRating { get; set; }
 
+        [Required(ErrorMessage = "Service Location ID is required")]
         [ForeignKey(nameof(Ref_Service_Location))]
         public int Ref_Service_Location_Id { get; init; }
     }
