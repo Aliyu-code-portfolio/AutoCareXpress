@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  acx.webapi:
+    container_name: acx.webapi
+    ports: 
+     - 8001:80
+    image: ${DOCKER_REGISTRY-}acxwebapi
+    build:
+      context: .
+      dockerfile: src/backend/presentation/ACX.WebAPI/Dockerfile
