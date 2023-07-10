@@ -17,7 +17,7 @@ COPY ["src/backend/infrastructure/ACX.ServiceContract/ACX.ServiceContract.csproj
 COPY ["src/backend/presentation/ACX.EndsPoint/ACX.EndsPoint.csproj", "src/backend/presentation/ACX.EndsPoint/"]
 RUN dotnet restore "src/backend/presentation/ACX.WebAPI/ACX.WebAPI.csproj"
 COPY . .
-WORKDIR "/src/src/backend/presentation/ACX.WebAPI"
+WORKDIR "src/backend/presentation/ACX.WebAPI"
 RUN dotnet build "ACX.WebAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish

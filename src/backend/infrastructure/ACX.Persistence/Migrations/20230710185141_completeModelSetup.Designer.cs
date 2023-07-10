@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ACX.Persistence.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20230708184700_AdditionalUserFiledsForRefreshToken")]
-    partial class AdditionalUserFiledsForRefreshToken
+    [Migration("20230710185141_completeModelSetup")]
+    partial class completeModelSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -238,140 +238,140 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5157),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1208),
                             Location = "Agege",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5229),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1300),
                             Location = "Ajeromi-Ifelodun",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5231),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1306),
                             Location = "Alimosho",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5234),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1311),
                             Location = "Amuwo-Odofin",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5238),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1315),
                             Location = "Apapa",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5243),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1324),
                             Location = "Badagry",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5245),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1328),
                             Location = "Epe",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5247),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1332),
                             Location = "Eti-Osa",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5250),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1336),
                             Location = "Ibeju/Lekki",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5254),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1397),
                             Location = "Ifako-Ijaye",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5256),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1401),
                             Location = "Ikeja",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5258),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1405),
                             Location = "Ikorodu",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 13,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5260),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1408),
                             Location = "Kosofe",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 14,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5263),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1412),
                             Location = "Lagos Island",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 15,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5265),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1416),
                             Location = "Lagos Mainland",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 16,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5268),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1420),
                             Location = "Mushin",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 17,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5270),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1424),
                             Location = "Ojo",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 18,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5274),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1429),
                             Location = "Oshodi-Isolo",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 19,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5276),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1433),
                             Location = "Shomolu",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 20,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5278),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1437),
                             Location = "Surulere",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -415,7 +415,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5597),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1866),
                             Description = "Providing immediate assistance for breakdowns, flat tires, jump starts, etc.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Roadside Assistance"
@@ -423,7 +423,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5607),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1879),
                             Description = "Offering routine maintenance services like oil changes, filter replacements, and brake inspections.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Maintenance Services"
@@ -431,7 +431,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5610),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1883),
                             Description = "Handling repairs for various car components, including engines, brakes, electrical systems, etc.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Repairs"
@@ -439,7 +439,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5613),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1886),
                             Description = "Providing services related to dents, scratches, and painting jobs.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Bodywork and Paint"
@@ -447,7 +447,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5615),
+                            CreatedDate = new DateTime(2023, 7, 10, 19, 51, 41, 229, DateTimeKind.Local).AddTicks(1891),
                             Description = "Offering towing services for vehicles in need of transportation.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Towing"
@@ -664,25 +664,25 @@ namespace ACX.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "87737215-160a-45a2-ada6-49aa319aa3f2",
+                            Id = "49c36967-34de-4881-9bad-d59620c660f8",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "f708bb95-5559-4e3b-b7e2-30c104e43ac4",
+                            Id = "053736f1-4866-4e50-ac5d-af78f8574b35",
                             Name = "Provider",
                             NormalizedName = "PROVIDER"
                         },
                         new
                         {
-                            Id = "fe10f865-c2ab-49cb-837a-664e0ee4fd78",
+                            Id = "6dc78698-837f-45b7-b752-f371839f3595",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "0858da27-2eac-43f2-9f24-7024610360d4",
+                            Id = "b7e15e15-fd9c-44a5-8cc4-da56025475ca",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
