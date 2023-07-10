@@ -16,7 +16,7 @@ namespace ACX.Domain.Model
         public int ProviderServiceId { get; set; }
 
         [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; }
+        public string? UserId { get; set; }
 
         [ForeignKey(nameof(Ref_Service_Type))]
         public int Ref_Service_Type_Id { get; set; }

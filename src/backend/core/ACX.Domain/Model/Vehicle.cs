@@ -11,7 +11,7 @@ namespace ACX.Domain.Model
         public int Id { get; set; }
 
         [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; }
+        public string? UserId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [StringLength(50, ErrorMessage = "Name must be at most 50 characters")]

@@ -3,6 +3,7 @@ using ACX.Application.DTOs.Update;
 using ACX.EndsPoint.ActionFilters;
 using ACX.ServiceContract.Common;
 using ACX.Shared.RequestFeatures.ModelRequestParameters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
@@ -12,6 +13,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/users")]
     [ApiController]
+
     public class UsersController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -22,6 +24,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
+        [Authorize(Roles ="Manager")]
         public async Task<ActionResult> GetAllUsers([FromQuery] UserRequestParameter requestParameter)
         {
             var result = await _serviceManager.UserService.GetAllUsers(requestParameter);
@@ -46,13 +49,13 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // POST 
-        [HttpPost]
+        /*[HttpPost]
         //[ServiceFilter(typeof(ValidationActionFilter))]
         public async Task<ActionResult> Post([FromBody] UserCreationDto userCreationDto)
         {
             var result = await _serviceManager.UserService.CreateUser(userCreationDto);
             return CreatedAtAction(nameof(GetUserById), new {id=result.Id}, result);
-        }
+        }*/
 
         // PUT 
         [HttpPut()]

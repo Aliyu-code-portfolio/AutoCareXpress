@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ACX.Persistence.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20230706103951_firstMigration")]
-    partial class firstMigration
+    [Migration("20230708184700_AdditionalUserFiledsForRefreshToken")]
+    partial class AdditionalUserFiledsForRefreshToken
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,8 +67,8 @@ namespace ACX.Persistence.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -116,8 +116,8 @@ namespace ACX.Persistence.Migrations
 
             modelBuilder.Entity("ACX.Domain.Model.PickUpAddress", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BuildingNumber")
                         .IsRequired()
@@ -238,140 +238,140 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9540),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5157),
                             Location = "Agege",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9607),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5229),
                             Location = "Ajeromi-Ifelodun",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9609),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5231),
                             Location = "Alimosho",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9611),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5234),
                             Location = "Amuwo-Odofin",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9613),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5238),
                             Location = "Apapa",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9619),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5243),
                             Location = "Badagry",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9621),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5245),
                             Location = "Epe",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9623),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5247),
                             Location = "Eti-Osa",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9624),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5250),
                             Location = "Ibeju/Lekki",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9626),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5254),
                             Location = "Ifako-Ijaye",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9628),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5256),
                             Location = "Ikeja",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9630),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5258),
                             Location = "Ikorodu",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 13,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9632),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5260),
                             Location = "Kosofe",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 14,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9633),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5263),
                             Location = "Lagos Island",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 15,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9634),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5265),
                             Location = "Lagos Mainland",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 16,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9636),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5268),
                             Location = "Mushin",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 17,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9637),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5270),
                             Location = "Ojo",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 18,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9640),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5274),
                             Location = "Oshodi-Isolo",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 19,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9641),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5276),
                             Location = "Shomolu",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 20,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9643),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5278),
                             Location = "Surulere",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -415,7 +415,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9906),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5597),
                             Description = "Providing immediate assistance for breakdowns, flat tires, jump starts, etc.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Roadside Assistance"
@@ -423,7 +423,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9915),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5607),
                             Description = "Offering routine maintenance services like oil changes, filter replacements, and brake inspections.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Maintenance Services"
@@ -431,7 +431,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9917),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5610),
                             Description = "Handling repairs for various car components, including engines, brakes, electrical systems, etc.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Repairs"
@@ -439,7 +439,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9919),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5613),
                             Description = "Providing services related to dents, scratches, and painting jobs.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Bodywork and Paint"
@@ -447,7 +447,7 @@ namespace ACX.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 7, 6, 11, 39, 51, 83, DateTimeKind.Local).AddTicks(9920),
+                            CreatedDate = new DateTime(2023, 7, 8, 19, 47, 0, 704, DateTimeKind.Local).AddTicks(5615),
                             Description = "Offering towing services for vehicles in need of transportation.",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceName = "Towing"
@@ -503,40 +503,81 @@ namespace ACX.Persistence.Migrations
 
             modelBuilder.Entity("ACX.Domain.Model.User", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(1)");
 
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
 
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("ACX.Domain.Model.Vehicle", b =>
@@ -584,14 +625,173 @@ namespace ACX.Persistence.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "87737215-160a-45a2-ada6-49aa319aa3f2",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "f708bb95-5559-4e3b-b7e2-30c104e43ac4",
+                            Name = "Provider",
+                            NormalizedName = "PROVIDER"
+                        },
+                        new
+                        {
+                            Id = "fe10f865-c2ab-49cb-837a-664e0ee4fd78",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "0858da27-2eac-43f2-9f24-7024610360d4",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("ACX.Domain.Model.Appointment", b =>
@@ -604,22 +804,9 @@ namespace ACX.Persistence.Migrations
 
                     b.HasOne("ACX.Domain.Model.User", "User")
                         .WithMany("Appointments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("ServiceProvider");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ACX.Domain.Model.PickUpAddress", b =>
-                {
-                    b.HasOne("ACX.Domain.Model.User", "User")
-                        .WithOne("PickUpAddresses")
-                        .HasForeignKey("ACX.Domain.Model.PickUpAddress", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -656,11 +843,60 @@ namespace ACX.Persistence.Migrations
                 {
                     b.HasOne("ACX.Domain.Model.User", "User")
                         .WithMany("Vehicles")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("ACX.Domain.Model.User", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("ACX.Domain.Model.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ACX.Domain.Model.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("ACX.Domain.Model.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ACX.Domain.Model.Ref_Service_Type", b =>
@@ -678,8 +914,6 @@ namespace ACX.Persistence.Migrations
             modelBuilder.Entity("ACX.Domain.Model.User", b =>
                 {
                     b.Navigation("Appointments");
-
-                    b.Navigation("PickUpAddresses");
 
                     b.Navigation("Vehicles");
                 });

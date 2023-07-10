@@ -12,7 +12,7 @@ namespace ACX.WebAPI.ProfileMapping
         public MappingProfile()
         {
             CreateMap<User,UserDisplayDto>();
-            CreateMap<UserCreationDto, User>();
+            CreateMap<UserRegistrationDto, User>();
             CreateMap<UserUpdateDto, User>();
             CreateMap<ServiceProvider, ServiceProviderDisplayDto>();
             CreateMap<ServiceProviderCreationDto, ServiceProvider>();
