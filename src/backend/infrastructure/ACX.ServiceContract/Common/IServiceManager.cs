@@ -9,6 +9,7 @@ namespace ACX.ServiceContract.Common
 {
     public interface IServiceManager
     {
+        IAuthenticationService AuthenticationService { get; }
         IUserService UserService { get; }
         IServiceProviderService ServiceProviderService { get; }
         IProviderServiceService ProviderServiceService { get; }

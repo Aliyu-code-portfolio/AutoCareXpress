@@ -1,13 +1,14 @@
 ﻿using ACX.Domain.Common;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ACX.Domain.Model
 {
-    public class User : AuditableBaseEntity
+    public class User : IdentityUser
     {
         [Key]
-        public Guid Id { get; set; }
+        //public Guid Id { get; set; }//Do something about this
 
         //[Required(ErrorMessage = "Name is required.")]
         [StringLength(25, ErrorMessage = "Name must be between 1 and 25 characters.", MinimumLength = 1)]
@@ -16,19 +17,21 @@ namespace ACX.Domain.Model
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Invalid email format.")]
         [StringLength(50, ErrorMessage = "Email must be between 1 and 50 characters.", MinimumLength = 1)]
-        public string? Email { get; set; }
+        public override string? Email { get; set; }//this too
 
-        //[Required(ErrorMessage = "Phone is required.")]
+        /*//[Required(ErrorMessage = "Phone is required.")]
         [RegularExpression(@"^[0-9]{11}$", ErrorMessage = "Phone must be a 11-digit number.")]
-        public string? Phone { get; set; }
+        public string? Phone { get; set; }*/
 
         //[Required(ErrorMessage = "Gender is required.")]
         [RegularExpression("^[MF]$", ErrorMessage = "Gender must be either 'M' or 'F'.")]
         public char? Gender { get; set; }
+        public string? RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiryTime { get; set; }
 
         //Navigational properties
         public virtual ICollection<Appointment>? Appointments { get; set; }  
         public virtual ICollection<Vehicle>? Vehicles { get; set; }
-        public virtual PickUpAddress? PickUpAddresses { get; set; }
+        //public virtual PickUpAddress? PickUpAddresses { get; set; }
     }
 }

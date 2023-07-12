@@ -1,5 +1,6 @@
 ﻿using ACX.Domain.Model;
 using ACX.Persistence.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,17 @@ using System.Threading.Tasks;
 
 namespace ACX.Persistence.Common
 {
-    public class RepositoryContext:DbContext
+    public class RepositoryContext:IdentityDbContext<User>
     {
         public RepositoryContext(DbContextOptions<RepositoryContext> options):base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new ServiceLocationConfiguration());
-            modelBuilder.ApplyConfiguration(new ServiceTypeConfiguration());    
+            modelBuilder.ApplyConfiguration(new ServiceTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
         public DbSet<User> Users { get; set; }
         public DbSet<ServiceProvider> ServiceProviders { get; set; }

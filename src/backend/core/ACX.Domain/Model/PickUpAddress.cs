@@ -6,7 +6,7 @@ namespace ACX.Domain.Model
     public class PickUpAddress:AuditableBaseEntity
     {
         [Key]
-        public Guid UserId { get; set; }
+        public string? UserId { get; set; }
 
         [Required(ErrorMessage = "BuildingNumber is required")]
         [StringLength(5, ErrorMessage = "BuildingNumber must be at most 10 characters")]
@@ -31,7 +31,7 @@ namespace ACX.Domain.Model
         //public double Longitude { get; set; }
 
         //Navigational properties
-        public virtual User? User { get; set; } 
+        //public virtual User? User { get; set; } 
 
 
     }

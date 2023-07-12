@@ -1,8 +1,12 @@
 ﻿using ACX.Application.Common;
+using ACX.Domain.Model;
 using ACX.Service.Services;
 using ACX.ServiceContract.Common;
 using ACX.ServiceContract.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +32,12 @@ namespace ACX.Service.Common
         private Lazy<IVehicleService> vehicleService;
 
         private Lazy<IAppointmentService> appointmentService;
+
         private Lazy<IDoYouKnowService> doYouKnowService;
 
-        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper)
+        private readonly Lazy<IAuthenticationService> authenticationService;
+
+        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper,ILoggerManager logger, UserManager<User> userManager,IConfiguration configuration)
         {
             userService = new Lazy<IUserService>(()=>new UserService(repositoryManager, mapper));
             serviceProviderService=new Lazy<IServiceProviderService>(()=>new ServiceProviderService(repositoryManager,mapper));
@@ -41,6 +48,7 @@ namespace ACX.Service.Common
             vehicleService = new Lazy<IVehicleService>(() => new VehicleService(repositoryManager, mapper));
             appointmentService = new Lazy<IAppointmentService>(() => new AppointmentService(repositoryManager, mapper));
             doYouKnowService = new Lazy<IDoYouKnowService>(()=>new DoYouKnowService(repositoryManager, mapper));
+            authenticationService = new Lazy<IAuthenticationService>(() =>new AuthenticationService(mapper,logger, userManager,configuration));
         }
         public IUserService UserService => userService.Value;
 
@@ -59,5 +67,7 @@ namespace ACX.Service.Common
         public IAppointmentService AppointmentService => appointmentService.Value;
 
         public IDoYouKnowService DoYouKnowService => doYouKnowService.Value;
+
+        public IAuthenticationService AuthenticationService => authenticationService.Value;
     }
 }

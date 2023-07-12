@@ -21,14 +21,14 @@ namespace ACX.Service.Services
             _repositoryManager = repositoryManager;
             _mapper = mapper;
         }
-        public async Task<UserDisplayDto> CreateUser(UserCreationDto userCreationDto)
+        /*public async Task<UserDisplayDto> CreateUser(UserRegistrationDto userCreationDto)
         {
             var user = _mapper.Map<User>(userCreationDto);
             _repositoryManager.UserRepository.CreateUser(user);
             await _repositoryManager.SaveChangesAsync();
             var userDto = _mapper.Map<UserDisplayDto>(user);
             return userDto;
-        }
+        }*/
 
         public async Task DeleteUser(Guid id)
         {

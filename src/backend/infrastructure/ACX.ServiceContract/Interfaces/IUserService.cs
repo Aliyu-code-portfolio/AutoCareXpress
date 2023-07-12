@@ -16,7 +16,7 @@ namespace ACX.ServiceContract.Interfaces
         Task<(IEnumerable<UserDisplayDto> Users, MetaData MetaData)> GetAllUsers(UserRequestParameter requestParameter);
         Task<UserDisplayDto> GetUserById(Guid id);
         Task<UserDisplayDto> GetUserByEmail(string email);
-        Task<UserDisplayDto> CreateUser(UserCreationDto userCreationDto);
+        //Task<UserDisplayDto> CreateUser(UserRegistrationDto userCreationDto);
         Task UpdateUser(UserUpdateDto userUpdateDto);
         Task DeleteUser(Guid id);
     }
