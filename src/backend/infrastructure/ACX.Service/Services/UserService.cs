@@ -30,7 +30,7 @@ namespace ACX.Service.Services
             return userDto;
         }*/
 
-        public async Task DeleteUser(Guid id)
+        public async Task DeleteUser(string id)
         {
             var user = await _repositoryManager.UserRepository.GetUserByIdAsync(id, false)
                 ?? throw new UserNotFoundException(id);
@@ -53,7 +53,7 @@ namespace ACX.Service.Services
             return userDto;
         }
 
-        public async Task<UserDisplayDto> GetUserById(Guid id)
+        public async Task<UserDisplayDto> GetUserById(string id)
         {
             var user = await _repositoryManager.UserRepository.GetUserByIdAsync(id, false)
                 ?? throw new UserNotFoundException(id);

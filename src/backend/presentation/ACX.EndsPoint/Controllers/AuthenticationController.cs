@@ -17,7 +17,7 @@ namespace ACX.EndsPoint.Controllers
 
         [HttpPost("register/admin")]
         [ServiceFilter(typeof(ValidationActionFilter))]
-        [Authorize(Roles ="Manager")]
+        //[Authorize(Roles ="Manager")]
         public async Task<ActionResult> RegisterSpecialUser([FromBody] UserRegistrationDto userCreationDto)
         {
             var result = await _service.AuthenticationService.RegisterUser(userCreationDto);

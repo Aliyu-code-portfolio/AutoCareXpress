@@ -15,8 +15,6 @@ namespace ACX.Application.DTOs.Display
 
         public Guid UserId { get; init; }
 
-        public string? Name { get; init; }
-
         public string? Color { get; init; }
 
         public string? PlateNumber { get; init; }

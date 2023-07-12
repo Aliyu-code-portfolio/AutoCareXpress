@@ -43,7 +43,7 @@ namespace ACX.Persistence.Repositories
             return appointment;
         }
 
-        public async Task<PagedList<Appointment>> GetAppointmentsByServiceProviderIdAsync(Guid serviceProviderId, AppointmentRequestParameters requestParameters, bool trackChanges)
+        public async Task<PagedList<Appointment>> GetAppointmentsByServiceProviderIdAsync(string serviceProviderId, AppointmentRequestParameters requestParameters, bool trackChanges)
         {
             var appointments = await FindByCondition(a => a.ServiceProviderId.Equals(serviceProviderId), trackChanges).Skip((requestParameters.PageNumber - 1) * requestParameters.PageSize)
                 .Take(requestParameters.PageSize).ToListAsync();
@@ -58,13 +58,18 @@ namespace ACX.Persistence.Repositories
             return appointment;
         }
         
-        public async Task<PagedList<Appointment>> GetAppointmentsByUserIdAsync(Guid userId, AppointmentRequestParameters requestParameters, bool trackChanges)
+        public async Task<PagedList<Appointment>> GetAppointmentsByUserIdAsync(string userId, AppointmentRequestParameters requestParameters, bool trackChanges)
         {
             var appointments = await FindByCondition(a => a.UserId.Equals(userId), trackChanges).Skip((requestParameters.PageNumber - 1) * requestParameters.PageSize)
                 .Take(requestParameters.PageSize).ToListAsync();
             var count = await FindByCondition(a => a.UserId.Equals(userId), trackChanges).CountAsync();
 
             return new PagedList<Appointment>(appointments, count, requestParameters.PageNumber, requestParameters.PageSize);
+        }
+
+        public void UpdateAppointment(Appointment appointment)
+        {
+            Update(appointment);
         }
     }
 }

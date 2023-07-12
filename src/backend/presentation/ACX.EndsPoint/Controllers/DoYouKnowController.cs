@@ -15,7 +15,7 @@ namespace ACX.EndsPoint.Controllers
             _serviceManager = serviceManager;
         }
         // GET
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<ActionResult> GetAllDoYouKnows()
         {
             var result = await _serviceManager.DoYouKnowService.GetAllDoYouKnow();
@@ -23,10 +23,18 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // GET id
-        [HttpGet("latest")]
+        [HttpGet("all/latest")]
         public async Task<ActionResult> GetByLatestDoYouKnows()
         {
             var result = await _serviceManager.DoYouKnowService.GetLatestDoYouKnow();
+            return Ok(result);
+        }
+
+        // GET id
+        [HttpGet()]
+        public async Task<ActionResult> GetRandomCarTip()
+        {
+            var result = await _serviceManager.DoYouKnowService.GetRandomDoYouKnow();
             return Ok(result);
         }
     }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ACX.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class identity : Migration
+    public partial class changeToAppointment : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,6 +35,8 @@ namespace ACX.Persistence.Migrations
                     Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(1)", nullable: true),
+                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -114,17 +116,15 @@ namespace ACX.Persistence.Migrations
                 name: "ServiceProviders",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CompanyName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompanyEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompanyPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RegistrationNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    OverallServiceRating = table.Column<int>(type: "int", nullable: true),
-                    Ref_Service_Location_Id = table.Column<int>(type: "int", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    NumberOfServiceRendered = table.Column<int>(type: "int", nullable: true),
+                    OverallServiceRating = table.Column<double>(type: "float", nullable: true),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    Ref_Service_Location_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -244,11 +244,10 @@ namespace ACX.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Color = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     PlateNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Manufacture = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -270,7 +269,7 @@ namespace ACX.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ServiceProviderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ServiceProviderId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ProviderServiceId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Ref_Service_Type_Id = table.Column<int>(type: "int", nullable: false),
@@ -295,8 +294,7 @@ namespace ACX.Persistence.Migrations
                         name: "FK_Appointments_ServiceProviders_ServiceProviderId",
                         column: x => x.ServiceProviderId,
                         principalTable: "ServiceProviders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -306,7 +304,7 @@ namespace ACX.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ref_Service_Type_ID = table.Column<int>(type: "int", nullable: false),
-                    ServiceProviderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ServiceProviderId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     MinPrice = table.Column<decimal>(type: "money", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -326,8 +324,7 @@ namespace ACX.Persistence.Migrations
                         name: "FK_ProviderServices_ServiceProviders_ServiceProviderId",
                         column: x => x.ServiceProviderId,
                         principalTable: "ServiceProviders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -337,7 +334,7 @@ namespace ACX.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Location = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    ServiceProviderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ServiceProviderId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -358,10 +355,10 @@ namespace ACX.Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0dd4c2cf-e0bc-42b5-9503-8cce3323fc07", null, "Provider", "PROVIDER" },
-                    { "0e9b0981-a7f3-4506-851b-cb9d4386d7e5", null, "User", "USER" },
-                    { "14cfd80d-b290-41b4-b4f2-c33a38f1443f", null, "Manager", "MANAGER" },
-                    { "4daf4b6c-9302-4a44-bb6d-7bdeac60e43f", null, "Administrator", "ADMINISTRATOR" }
+                    { "93c8b0c0-c97e-4f2d-bea5-6296ae1a5d6d", null, "Administrator", "ADMINISTRATOR" },
+                    { "95995341-0590-462c-b63c-8d78a776ec92", null, "User", "USER" },
+                    { "dd06bb80-6b5c-4191-b39d-ecc2a57bf397", null, "Manager", "MANAGER" },
+                    { "fe8dda6f-4733-4859-84a7-67e27d7c4b45", null, "Provider", "PROVIDER" }
                 });
 
             migrationBuilder.InsertData(
@@ -369,26 +366,26 @@ namespace ACX.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Location", "ModifiedBy", "ModifiedDate", "ServiceProviderId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1684), "Agege", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 2, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1750), "Ajeromi-Ifelodun", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 3, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1753), "Alimosho", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 4, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1755), "Amuwo-Odofin", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 5, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1758), "Apapa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 6, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1765), "Badagry", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 7, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1767), "Epe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 8, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1770), "Eti-Osa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 9, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1772), "Ibeju/Lekki", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 10, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1776), "Ifako-Ijaye", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 11, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1779), "Ikeja", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 12, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1782), "Ikorodu", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 13, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1784), "Kosofe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 14, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1787), "Lagos Island", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 15, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1789), "Lagos Mainland", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 16, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1792), "Mushin", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 17, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1795), "Ojo", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 18, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1799), "Oshodi-Isolo", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 19, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1802), "Shomolu", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 20, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(1804), "Surulere", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
+                    { 1, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9568), "Agege", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 2, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9649), "Ajeromi-Ifelodun", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 3, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9653), "Alimosho", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 4, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9657), "Amuwo-Odofin", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 5, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9660), "Apapa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 6, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9667), "Badagry", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 7, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9670), "Epe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 8, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9673), "Eti-Osa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 9, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9676), "Ibeju/Lekki", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 10, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9682), "Ifako-Ijaye", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 11, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9685), "Ikeja", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 12, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9688), "Ikorodu", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 13, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9691), "Kosofe", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 14, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9694), "Lagos Island", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 15, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9698), "Lagos Mainland", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 16, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9701), "Mushin", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 17, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9704), "Ojo", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 18, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9708), "Oshodi-Isolo", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 19, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9711), "Shomolu", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
+                    { 20, null, new DateTime(2023, 7, 12, 6, 33, 49, 901, DateTimeKind.Local).AddTicks(9714), "Surulere", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
                 });
 
             migrationBuilder.InsertData(
@@ -396,11 +393,11 @@ namespace ACX.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "ModifiedBy", "ModifiedDate", "ServiceName" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(2054), "Providing immediate assistance for breakdowns, flat tires, jump starts, etc.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Roadside Assistance" },
-                    { 2, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(2064), "Offering routine maintenance services like oil changes, filter replacements, and brake inspections.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Maintenance Services" },
-                    { 3, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(2066), "Handling repairs for various car components, including engines, brakes, electrical systems, etc.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Repairs" },
-                    { 4, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(2068), "Providing services related to dents, scratches, and painting jobs.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bodywork and Paint" },
-                    { 5, null, new DateTime(2023, 7, 8, 10, 8, 52, 999, DateTimeKind.Local).AddTicks(2070), "Offering towing services for vehicles in need of transportation.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Towing" }
+                    { 1, null, new DateTime(2023, 7, 12, 6, 33, 49, 902, DateTimeKind.Local).AddTicks(63), "Providing immediate assistance for breakdowns, flat tires, jump starts, etc.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Roadside Assistance" },
+                    { 2, null, new DateTime(2023, 7, 12, 6, 33, 49, 902, DateTimeKind.Local).AddTicks(76), "Offering routine maintenance services like oil changes, filter replacements, and brake inspections.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Maintenance Services" },
+                    { 3, null, new DateTime(2023, 7, 12, 6, 33, 49, 902, DateTimeKind.Local).AddTicks(80), "Handling repairs for various car components, including engines, brakes, electrical systems, etc.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Repairs" },
+                    { 4, null, new DateTime(2023, 7, 12, 6, 33, 49, 902, DateTimeKind.Local).AddTicks(84), "Providing services related to dents, scratches, and painting jobs.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bodywork and Paint" },
+                    { 5, null, new DateTime(2023, 7, 12, 6, 33, 49, 902, DateTimeKind.Local).AddTicks(87), "Offering towing services for vehicles in need of transportation.", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Towing" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -12,11 +12,7 @@ namespace ACX.Application.DTOs.Creation
     public record VehicleCreationDto
     {
         [Required(ErrorMessage = "User ID is required")]
-        public Guid UserId { get; init; }
-
-        [Required(ErrorMessage = "Name is required")]
-        [StringLength(50, ErrorMessage = "Name must be at most 50 characters")]
-        public string? Name { get; init; }
+        public string? UserId { get; init; }
 
         [Required(ErrorMessage = "Color is required")]
         [StringLength(20, ErrorMessage = "Color must be at most 20 characters")]

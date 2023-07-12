@@ -25,5 +25,14 @@ namespace ACX.Persistence.Repositories
         {
             return await FindAll(false).OrderByDescending(d => d.CreatedDate).Take(1).FirstOrDefaultAsync();
         }
+
+        public async Task<DoYouKnow?> GetRandomDoYouKnow()
+        {
+            var random = new Random();
+            int count = await FindAll(false).CountAsync();
+            var randNumber = random.Next(0, count);
+            var doyouknow = await FindAll(false).ToListAsync();
+            return doyouknow[randNumber];
+        }
     }
 }

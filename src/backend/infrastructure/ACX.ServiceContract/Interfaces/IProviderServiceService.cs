@@ -12,7 +12,7 @@ namespace ACX.ServiceContract.Interfaces
     public interface IProviderServiceService
     {
         Task<IEnumerable<ProviderServiceDisplayDto>> GetAllProviderServices(bool trackChanges);
-        Task<IEnumerable<ProviderServiceDisplayDto>> GetProviderServicesByServiceProviderId(Guid providerId, bool trackChanges);
+        Task<IEnumerable<ProviderServiceDisplayDto>> GetProviderServicesByServiceProviderId(string providerId, bool trackChanges);
         Task<IEnumerable<ProviderServiceDisplayDto>> GetProviderServicesByServiceType(int serviceTypeId, bool trackChanges);
         Task<ProviderServiceDisplayDto> GetProviderServiceById(int id, bool trackChanges);
         Task<ProviderServiceDisplayDto> CreateProviderService(ProviderServiceCreationDto providerServiceCreationDto);

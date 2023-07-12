@@ -36,7 +36,7 @@ namespace ACX.Persistence.Repositories
             return new PagedList<User>(users,count,requestParameter.PageNumber,requestParameter.PageSize);
         }
 
-        public async Task<User> GetUserByIdAsync(Guid id, bool trackChanges)
+        public async Task<User> GetUserByIdAsync(string id, bool trackChanges)
         {
             var user = await FindByCondition(u => u.Id.Equals(id), trackChanges).FirstOrDefaultAsync();
             return user;

@@ -10,7 +10,7 @@ namespace ACX.Domain.Model
         public int Id { get; set; }
 
         [ForeignKey(nameof(ServiceProvider))]
-        public Guid ServiceProviderId { get; set; }
+        public string? ServiceProviderId { get; set; }
 
         [ForeignKey(nameof(ProviderService))]
         public int ProviderServiceId { get; set; }
@@ -23,12 +23,12 @@ namespace ACX.Domain.Model
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime? DateCompleted { get; set; }
+        public DateTime? DateCompleted { get; set; } = null;
         [StringLength(int.MaxValue)]
         public string? Description { get; set; }
         public bool Status { get; set; } = false;
-        [Range(0, 5,ErrorMessage ="Rating must be in the range 0 - 5")]
-        public int? RateService { get; set; }
+        [Range(0, 5, ErrorMessage = "Rating must be in the range 0 - 5")]
+        public int? RateService { get; set; } = null;
 
         //Navigational properties
         public virtual User? User { get; set; }

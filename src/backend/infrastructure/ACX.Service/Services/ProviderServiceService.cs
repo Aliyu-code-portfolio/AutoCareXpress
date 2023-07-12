@@ -77,7 +77,7 @@ namespace ACX.Service.Services
             return serviceDto;
         }
 
-        public async Task<IEnumerable<ProviderServiceDisplayDto>> GetProviderServicesByServiceProviderId(Guid providerId, bool trackChanges)
+        public async Task<IEnumerable<ProviderServiceDisplayDto>> GetProviderServicesByServiceProviderId(string providerId, bool trackChanges)
         {
             var services = await _repositoryManager.ProviderServiceRepository.GetAllProviderServiceByProviderIdAsync(providerId, false);
             var servicesDto = _mapper.Map<IEnumerable<ProviderServiceDisplayDto>>(services);

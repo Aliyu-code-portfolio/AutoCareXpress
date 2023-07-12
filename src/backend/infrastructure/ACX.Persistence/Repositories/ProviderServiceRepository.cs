@@ -32,7 +32,7 @@ namespace ACX.Persistence.Repositories
             return providerServices;
         }
         
-        public async Task<IEnumerable<ProviderService>> GetAllProviderServiceByProviderIdAsync(Guid providerId, bool trackChanges)
+        public async Task<IEnumerable<ProviderService>> GetAllProviderServiceByProviderIdAsync(string providerId, bool trackChanges)
         {
             var providerService = await FindByCondition(p => p.ServiceProviderId.Equals(providerId), trackChanges).ToListAsync();
             return providerService;

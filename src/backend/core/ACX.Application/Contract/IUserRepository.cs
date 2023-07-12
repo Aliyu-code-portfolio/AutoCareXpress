@@ -12,7 +12,7 @@ namespace ACX.Application.Contract
     public interface IUserRepository
     {
         Task<PagedList<User>> GetAllUserAsync(UserRequestParameter requestParameter, bool trackChanges);
-        Task<User> GetUserByIdAsync(Guid id, bool trackChanges);
+        Task<User> GetUserByIdAsync(string id, bool trackChanges);
         Task<User> GetUserByEmailAsync(string email, bool trackChanges);
         void CreateUser(User user);
         void UpdateUser(User user);
