@@ -16,7 +16,7 @@ namespace ACX.Application.DTOs.Display
 
         public string? CompanyEmail { get; init; }
 
-        public int CompanyPhone { get; init; }
+        public string? CompanyPhone { get; init; }
 
         public string? RegistrationNumber { get; init; }
         public int? OverallServiceRating { get; set; }

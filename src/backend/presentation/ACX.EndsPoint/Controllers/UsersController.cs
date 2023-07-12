@@ -26,7 +26,8 @@ namespace ACX.EndsPoint.Controllers
         {
             var result = await _serviceManager.UserService.GetAllUsers(requestParameter);
             Response.Headers.Add("X-Pagination",
-                JsonSerializer.Serialize(result.MetaData));      
+                JsonSerializer.Serialize(result.MetaData));
+      
             return Ok(result.Users);
         }
 
@@ -38,7 +39,7 @@ namespace ACX.EndsPoint.Controllers
             return Ok(result);
         }
         // GET email
-        [HttpGet("email/{id}", Name = "GetUserByEmail")]
+        [HttpGet("email/{email}", Name = "GetUserByEmail")]
         public async Task<ActionResult> GetUserByEmail(string email)
         {
             var result = await _serviceManager.UserService.GetUserByEmail(email);
@@ -74,6 +75,7 @@ namespace ACX.EndsPoint.Controllers
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, PUT");
             return Ok();
-        }
+        }
+
     }
 }
