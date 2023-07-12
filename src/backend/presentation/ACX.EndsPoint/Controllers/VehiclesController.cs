@@ -18,9 +18,9 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
-        public async Task<ActionResult> GetAllVehicles(bool trackChanges)
+        public async Task<ActionResult> GetAllVehicles()
         {
-            var result = await _serviceManager.VehicleService.GetAllVehicles(trackChanges);
+            var result = await _serviceManager.VehicleService.GetAllVehicles(false);
             return Ok(result);
         }
 

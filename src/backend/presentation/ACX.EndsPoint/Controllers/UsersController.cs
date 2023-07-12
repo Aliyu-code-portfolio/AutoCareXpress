@@ -41,7 +41,7 @@ namespace ACX.EndsPoint.Controllers
             return Ok(result);
         }
         // GET email
-        [HttpGet("email/{id}", Name = "GetUserByEmail")]
+        [HttpGet("email/{email}", Name = "GetUserByEmail")]
         public async Task<ActionResult> GetUserByEmail(string email)
         {
             var result = await _serviceManager.UserService.GetUserByEmail(email);
