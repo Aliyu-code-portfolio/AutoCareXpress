@@ -22,6 +22,7 @@ namespace ACX.Service.Services
     internal sealed class AuthenticationService : IAuthenticationService
     {
         //private readonly ILoggerManager _logger;
+        private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly ILoggerManager _logger;
@@ -29,8 +30,9 @@ namespace ACX.Service.Services
 
         private User? _user;
 
-        public AuthenticationService(IMapper mapper,ILoggerManager logger, UserManager<User> userManager, IConfiguration configuration)
+        public AuthenticationService(IRepositoryManager manager, IMapper mapper,ILoggerManager logger, UserManager<User> userManager, IConfiguration configuration)
         {
+            _repositoryManager = manager;
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
@@ -147,6 +149,21 @@ namespace ACX.Service.Services
                 await _userManager.AddToRolesAsync(user, userRegistrationDto.Roles);
             return result;
         }
+        public async Task<IdentityResult> RegisterProvider(ServiceProviderCreationDto serviceProviderCreationDto)
+        {
+            var user = _mapper.Map<User>(serviceProviderCreationDto);
+            user.Email = serviceProviderCreationDto.CompanyEmail;
+            user.UserName = user.Email;
+            var result = await _userManager.CreateAsync(user,
+            serviceProviderCreationDto.Password);
+            if (result.Succeeded)
+                await _userManager.AddToRolesAsync(user, serviceProviderCreationDto.Roles);
+            var providerModel = _mapper.Map<ServiceProvider>(serviceProviderCreationDto);
+            providerModel.Id=user.Id;
+            _repositoryManager.ServiceProviderRepository.CreateServiceProvider(providerModel);
+            await _repositoryManager.SaveChangesAsync();
+            return result;
+        }
 
         public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuthenticationDto)
         {
@@ -157,5 +174,6 @@ namespace ACX.Service.Services
                 _logger.LogWarn($"{nameof(ValidateUser)}: Authentication failed. Wrong user name or password.");
  return result;
         }
+
     }
 }

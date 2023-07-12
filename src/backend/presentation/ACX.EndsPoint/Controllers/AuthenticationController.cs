@@ -31,13 +31,38 @@ namespace ACX.EndsPoint.Controllers
             }
             return StatusCode(201);
         }
+
+        [HttpPost("register/provider")]
+        [ServiceFilter(typeof(ValidationActionFilter))]
+        //[Authorize(Roles ="Manager")]
+        public async Task<ActionResult> RegisterProvider([FromBody] ServiceProviderCreationDto userCreationDto)
+        {
+            foreach (var role in userCreationDto.Roles)
+            {
+                if (role.ToLower().Contains("manager") || role.ToLower().Contains("admin") || role.ToLower().Contains("user"))
+                {
+                    return StatusCode(401);
+                }
+            }
+            var result = await _service.AuthenticationService.RegisterProvider(userCreationDto);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.TryAddModelError(error.Code, error.Description);
+                }
+                return BadRequest(ModelState);
+            }
+            return StatusCode(201);
+        }
+
         [HttpPost("register")]
         [ServiceFilter(typeof(ValidationActionFilter))]
         public async Task<ActionResult> RegisterUser([FromBody] UserRegistrationDto userCreationDto)
         {
             foreach(var role in userCreationDto.Roles)
             {
-                if (role.ToLower().Contains("manager") || role.ToLower().Contains("admin"))
+                if (role.ToLower().Contains("manager") || role.ToLower().Contains("admin") || role.ToLower().Contains("provider"))
                 {
                     return StatusCode(401);
                 }
@@ -45,6 +70,7 @@ namespace ACX.EndsPoint.Controllers
             var result = await _service.AuthenticationService.RegisterUser(userCreationDto);
             if (!result.Succeeded)
             {
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.TryAddModelError(error.Code, error.Description);

@@ -56,12 +56,12 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // POST 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<ActionResult> Post([FromBody] ServiceProviderCreationDto serviceProviderCreationDto)
         {
             var result = await _serviceManager.ServiceProviderService.CreateServiceProvider(serviceProviderCreationDto);
             return CreatedAtAction(nameof(GetById), new {id=result.Id},result);
-        }
+        }*/
 
         // PUT 
         [HttpPut()]

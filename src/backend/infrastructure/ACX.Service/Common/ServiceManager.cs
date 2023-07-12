@@ -48,7 +48,7 @@ namespace ACX.Service.Common
             vehicleService = new Lazy<IVehicleService>(() => new VehicleService(repositoryManager, mapper));
             appointmentService = new Lazy<IAppointmentService>(() => new AppointmentService(repositoryManager, mapper));
             doYouKnowService = new Lazy<IDoYouKnowService>(()=>new DoYouKnowService(repositoryManager, mapper));
-            authenticationService = new Lazy<IAuthenticationService>(() =>new AuthenticationService(mapper,logger, userManager,configuration));
+            authenticationService = new Lazy<IAuthenticationService>(() =>new AuthenticationService(repositoryManager, mapper,logger, userManager,configuration));
         }
         public IUserService UserService => userService.Value;
 
