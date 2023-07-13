@@ -178,10 +178,10 @@ namespace ACX.Service.Services
         private async Task SendOTPEmail(string id, string email)
         {//Use outlook
             var code = new Random().Next(1234,9899);
-            var body = $"Hi, Welcome to AutoCareXpress \nYour One Time Password (OTP) is {code}. " +
-                $"Use this code to verify your Email Address on AutoCareXpress\nDo not share this message with anyone. " +
-                $"This code is valid for 10 minutes ";
-            await _emailSender.SendEmailAsync(email, "Verify your account AUTOCAREXPRESS", body);
+            var body = $"Hi, Welcome to AutoCareXpress \n\nYour One Time Password (OTP) is {code}. " +
+                $"Use this code to verify your Email Address on AutoCareXpress\n\nDo not share this message with anyone. " +
+                $"This code is valid for 10 minutes";
+            await _emailSender.SendEmailAsync(email, "Verify Your Account AUTOCAREXPRESS", body);
             var user = await _repositoryManager.UserRepository.GetUserByIdAsync(id, false)
                 ?? throw new UserNotFoundException(id);
             user.EmailVerifyCode = code;

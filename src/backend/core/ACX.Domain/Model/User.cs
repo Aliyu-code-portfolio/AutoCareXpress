@@ -23,7 +23,7 @@ namespace ACX.Domain.Model
         public DateTime? EmailVerifyDate { get; set; }
         public DateTime? LastPasswordChangeDate { get; set; }
         public DateTime? EmailTokenExpiryDate { get; set; } = null;
-        public DateTime? PasswordChangeTokenExpiryDate { get; set; } = null;
+        public DateTime? PasswordChangeTokenExpiryDate { get; set; } = null;//
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
 

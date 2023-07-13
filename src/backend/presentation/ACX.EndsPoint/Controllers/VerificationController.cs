@@ -36,7 +36,6 @@ namespace ACX.EndsPoint.Controllers
 
         }
 
-
         ///
         //Verification token
         [HttpPost("verify/forget/{id}/{payload}")]
