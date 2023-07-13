@@ -22,6 +22,7 @@ namespace ACX.WebAPI.Extensions
                         {
                             NotFoundException => StatusCodes.Status404NotFound,
                             CannotCreateException => StatusCodes.Status406NotAcceptable,
+                            VerificationFailException => StatusCodes.Status404NotFound,
                             _ => StatusCodes.Status500InternalServerError
                         }; ;
                         logger.LogError($"Something went wrong: {contextFeature.Error}");

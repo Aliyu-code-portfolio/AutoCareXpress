@@ -33,7 +33,7 @@ namespace ACX.Persistence.Repositories
         }
 
         //Please check this, I don't know how to do it becase i didnt see any foreign key pointing to userId in the "PickUpAddressModel. I also checked the diagram and there's no foreign key pointing to user table"
-        public async Task<PickUpAddress> GetPickUpAddressByUserId(Guid userId, bool trackChanges)
+        public async Task<PickUpAddress> GetPickUpAddressByUserId(string userId, bool trackChanges)
         {
             var pickUpAddress = await FindByCondition(p => p.UserId.Equals(userId), trackChanges).FirstOrDefaultAsync();
             return pickUpAddress;

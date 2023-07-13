@@ -55,6 +55,14 @@ namespace ACX.EndsPoint.Controllers
             return Ok(result);
         }
 
+        // GET regNumber
+        [HttpGet("location/{id}")]
+        public async Task<ActionResult> GetByLocation(int id)
+        {
+            var result = await _serviceManager.ServiceProviderService.GetProductByLocation(id);
+            return Ok(result);
+        }
+
         // POST 
         /*[HttpPost]
         public async Task<ActionResult> Post([FromBody] ServiceProviderCreationDto serviceProviderCreationDto)

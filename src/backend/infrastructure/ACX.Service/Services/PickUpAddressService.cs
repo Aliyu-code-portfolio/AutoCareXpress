@@ -40,7 +40,7 @@ namespace ACX.Service.Services
             return addressDto;
         }
 
-        public async Task DeletePickUpAddress(Guid id)
+        public async Task DeletePickUpAddress(string id)
         {
             var address = await _repositoryManager.PickUpAddress_Repository.GetPickUpAddressByUserId(id, false)
                 ?? throw new PickUpAddressNotFoundException(id);
@@ -48,7 +48,7 @@ namespace ACX.Service.Services
             await _repositoryManager.SaveChangesAsync();
         }
 
-        public async Task<PickUpAddressDisplayDto> GetUserPickUpAddress(Guid userId, bool trackChanges)
+        public async Task<PickUpAddressDisplayDto> GetUserPickUpAddress(string userId, bool trackChanges)
         {
             var address = await _repositoryManager.PickUpAddress_Repository.GetPickUpAddressByUserId(userId, false)
                ?? throw new PickUpAddressNotFoundException(userId);

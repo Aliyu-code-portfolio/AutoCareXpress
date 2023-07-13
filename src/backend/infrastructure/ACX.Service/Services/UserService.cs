@@ -50,6 +50,10 @@ namespace ACX.Service.Services
             var user = await _repositoryManager.UserRepository.GetUserByEmailAsync(email, false)
                 ?? throw new UserNotFoundException(email);
             var userDto = _mapper.Map<UserDisplayDto>(user);
+            var address = await _repositoryManager.PickUpAddress_Repository.GetPickUpAddressByUserId(user.Id, false);
+            var addressDto = _mapper.Map<PickUpAddressDisplayDto>(address);
+            userDto.Address = addressDto??null;
+
             return userDto;
         }
 
@@ -58,6 +62,9 @@ namespace ACX.Service.Services
             var user = await _repositoryManager.UserRepository.GetUserByIdAsync(id, false)
                 ?? throw new UserNotFoundException(id);
             var userDto = _mapper.Map<UserDisplayDto>(user);
+            var address = await _repositoryManager.PickUpAddress_Repository.GetPickUpAddressByUserId(user.Id, false);
+            var addressDto = _mapper.Map<PickUpAddressDisplayDto>(address);
+            userDto.Address = addressDto ?? null;
             return userDto;
         }
 

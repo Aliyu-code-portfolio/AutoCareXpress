@@ -37,7 +37,7 @@ namespace ACX.Service.Common
 
         private readonly Lazy<IAuthenticationService> authenticationService;
 
-        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper,ILoggerManager logger, UserManager<User> userManager,IConfiguration configuration)
+        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper,ILoggerManager logger, UserManager<User> userManager,IConfiguration configuration, IEmailSender emailSender)
         {
             userService = new Lazy<IUserService>(()=>new UserService(repositoryManager, mapper));
             serviceProviderService=new Lazy<IServiceProviderService>(()=>new ServiceProviderService(repositoryManager,mapper));
@@ -48,7 +48,7 @@ namespace ACX.Service.Common
             vehicleService = new Lazy<IVehicleService>(() => new VehicleService(repositoryManager, mapper));
             appointmentService = new Lazy<IAppointmentService>(() => new AppointmentService(repositoryManager, mapper));
             doYouKnowService = new Lazy<IDoYouKnowService>(()=>new DoYouKnowService(repositoryManager, mapper));
-            authenticationService = new Lazy<IAuthenticationService>(() =>new AuthenticationService(repositoryManager, mapper,logger, userManager,configuration));
+            authenticationService = new Lazy<IAuthenticationService>(() =>new AuthenticationService(repositoryManager, mapper,logger, userManager, emailSender,configuration));
         }
         public IUserService UserService => userService.Value;
 

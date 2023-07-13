@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ACX.Service.Email;
 
 namespace ACX.WebAPI.Extensions
 {
@@ -90,5 +92,9 @@ namespace ACX.WebAPI.Extensions
     };
 });
         }
+    public static void ConfigureEmailService(this IServiceCollection services)
+    {
+            services.AddTransient<IEmailSender, EmailSender>();
+    }
     }
 }

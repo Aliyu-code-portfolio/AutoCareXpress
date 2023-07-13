@@ -53,6 +53,13 @@ namespace ACX.EndsPoint.Controllers
             return Ok(result);
         }
 
+        // GET services for request
+        [HttpGet("request/{location}/{type}")]
+        public async Task<ActionResult> GetUserServiceRequest(int location, int type)
+        {
+            var result = await _serviceManager.ProviderServiceService.GetProviderServiceByServiceTypeAndLocation(type, location, false);
+            return Ok(result);
+        }
 
         // POST 
         [HttpPost]

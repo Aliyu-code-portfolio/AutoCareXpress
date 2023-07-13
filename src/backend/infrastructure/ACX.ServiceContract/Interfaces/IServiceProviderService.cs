@@ -14,6 +14,7 @@ namespace ACX.ServiceContract.Interfaces
     public interface IServiceProviderService
     {
         Task<(IEnumerable<ServiceProviderDisplayDto> Providers, MetaData MetaData)> GetAllServiceProviders(ProviderRequestParameter requestParameter);
+        Task<IEnumerable<ServiceProviderDisplayDto>> GetProductByLocation(int id);
         Task<ServiceProviderDisplayDto> GetServiceProviderById(string id);
         Task<ServiceProviderDisplayDto> GetServiceProviderByEmail(string email);
         Task<ServiceProviderDisplayDto> GerServiceProviderByRegNumber(string regNumber);

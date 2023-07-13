@@ -12,6 +12,7 @@ namespace ACX.Application.Contract
     public interface IServiceProviderRepository
     {
         Task<PagedList<ServiceProvider>> GetAllServiceProviderAsync(ProviderRequestParameter requestParameter, bool trackChanges);
+        Task<IEnumerable<ServiceProvider>> GetAllServiceByLocation(int id);
         Task<ServiceProvider> GetServiceProviderByIdAsync(string id, bool trackChanges);
         Task<ServiceProvider> GetServiceProviderByRegNumberAsync(string regNumber, bool trackChanges);
         Task<ServiceProvider> GetServiceProviderByEmailAsync(string email, bool trackChanges);

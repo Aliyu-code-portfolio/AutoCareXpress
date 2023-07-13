@@ -62,6 +62,13 @@ namespace ACX.Service.Services
             return (serviceProviderDto, serviceProvider.MetaData);
         }
 
+        public async Task<IEnumerable<ServiceProviderDisplayDto>> GetProductByLocation(int id)
+        {
+            var providers = await _repositoryManager.ServiceProviderRepository.GetAllServiceByLocation(id);
+            var providersDto = _mapper.Map<IEnumerable<ServiceProviderDisplayDto>>(providers);
+            return providersDto;
+        }
+
         public async Task<ServiceProviderDisplayDto> GetServiceProviderByEmail(string email)
         {
             var serviceProvider = await _repositoryManager.ServiceProviderRepository

@@ -59,5 +59,10 @@ namespace ACX.Persistence.Repositories
         {
             Update(serviceProvider);
         }
+
+        public async Task<IEnumerable<ServiceProvider>> GetAllServiceByLocation(int id)
+        {
+            return await FindByCondition(p=>p.Ref_Service_Location_Id.Equals(id),false).ToListAsync();
+        }
     }
 }

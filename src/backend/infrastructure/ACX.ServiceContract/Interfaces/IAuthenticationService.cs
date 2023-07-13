@@ -15,5 +15,7 @@ namespace ACX.ServiceContract.Interfaces
         Task<bool> ValidateUser(UserForAuthenticationDto userForAuthenticationDto);
         Task<TokenDto> CreateToken(bool populateExp);
         Task<TokenDto> RefreshToken(TokenDto tokenDto);
+        Task VerifyEmail(string id,int payload);
+        Task SendVerifyCodeToEmail(string id);
     }
 }

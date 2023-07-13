@@ -18,7 +18,7 @@ namespace ACX.Application.DTOs.Display
         public int Ref_Service_Type_ID { get; init; }//use the id to pull data and place into the individual dto
 
         public decimal MinPrice { get; init; }
-        public ServiceProviderDisplayDto? ServiceProviderDisplayDto { get; set; }
-        public Ref_Service_Type_Display_Dto? Ref_Service_Type_Display_Dto { get; set; }
+        public ServiceProviderDisplayDto? ServiceProvider { get; set; }
+        public Ref_Service_Type_Display_Dto? Ref_Service_Type { get; set; }
     }
 }
