@@ -30,7 +30,7 @@ namespace ACX.EndsPoint.Controllers
                 }
                 return BadRequest(ModelState);
             }
-            return StatusCode(201);
+            return Ok("Successfully created an account. Please verify email");
         }
 
         //register for service providers
@@ -55,7 +55,7 @@ namespace ACX.EndsPoint.Controllers
                 }
                 return BadRequest(ModelState);
             }
-            return Ok("Successfully registered, Verify email");
+            return Ok("Successfully created an account. Please verify email");
         }
 
         //register for normal users
@@ -80,7 +80,7 @@ namespace ACX.EndsPoint.Controllers
                 }
                 return BadRequest(ModelState);
             }
-            return Ok("Successfully registered, Verify email");
+            return Ok("Successfully created an account. Please verify email");
         }
 
         //Login for every type of users

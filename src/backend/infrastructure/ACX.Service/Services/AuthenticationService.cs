@@ -154,6 +154,7 @@ namespace ACX.Service.Services
             userRegistrationDto.Password);
             if (result.Succeeded)
                 await _userManager.AddToRolesAsync(user, userRegistrationDto.Roles);
+            _user = user;
             await SendOTPEmail(user.Id, user.Email);
             return result;
         }
@@ -171,6 +172,7 @@ namespace ACX.Service.Services
             providerModel.Id=user.Id;
             _repositoryManager.ServiceProviderRepository.CreateServiceProvider(providerModel);
             await _repositoryManager.SaveChangesAsync();
+            _user = user;
             await SendOTPEmail(user.Id, user.Email);
             return result;
         }
@@ -182,11 +184,10 @@ namespace ACX.Service.Services
                 $"Use this code to verify your Email Address on AutoCareXpress\n\nDo not share this message with anyone. " +
                 $"This code is valid for 10 minutes";
             await _emailSender.SendEmailAsync(email, "Verify Your Account AUTOCAREXPRESS", body);
-            var user = await _repositoryManager.UserRepository.GetUserByIdAsync(id, false)
-                ?? throw new UserNotFoundException(id);
-            user.EmailVerifyCode = code;
-            user.EmailTokenExpiryDate = DateTime.Now.AddMinutes(10);
-            _repositoryManager.UserRepository.UpdateUser(user);
+            
+            _user.EmailVerifyCode = code;
+            _user.EmailTokenExpiryDate = DateTime.Now.AddMinutes(10);
+            _repositoryManager.UserRepository.UpdateUser(_user);
             await _repositoryManager.SaveChangesAsync();
         }
 
@@ -208,6 +209,7 @@ namespace ACX.Service.Services
             {
                 throw new VerificationFailException("Email already verified");
             }
+            _user = user;
             await SendOTPEmail(id, user.Email);
         }
 

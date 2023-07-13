@@ -25,7 +25,7 @@ namespace ACX.Service.Email
             {
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(Email, password)
+                Credentials = new NetworkCredential("no-reply.autocarexpress@outlook.com", "innovation123$")
             };
 
             return client.SendMailAsync(
