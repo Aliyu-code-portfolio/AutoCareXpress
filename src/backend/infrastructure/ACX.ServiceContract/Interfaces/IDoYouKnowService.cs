@@ -11,5 +11,6 @@ namespace ACX.ServiceContract.Interfaces
     {
         Task<IEnumerable<DoYouKnowDisplayDto>> GetAllDoYouKnow();
         Task<DoYouKnowDisplayDto> GetLatestDoYouKnow();
+        Task<DoYouKnowDisplayDto> GetRandomDoYouKnow();
     }
 }

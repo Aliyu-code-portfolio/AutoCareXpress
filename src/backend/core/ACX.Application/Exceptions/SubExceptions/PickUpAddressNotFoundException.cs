@@ -8,7 +8,7 @@ namespace ACX.Application.Exceptions.SubExceptions
 {
     public class PickUpAddressNotFoundException:NotFoundException
     {
-        public PickUpAddressNotFoundException(Guid id):base($"The pickup address for user {id} is not found in the database")
+        public PickUpAddressNotFoundException(string id):base($"The pickup address for user {id} is not found in the database")
         {
             
         }

@@ -17,5 +17,6 @@ namespace ACX.Application.DTOs.Display
         public string? PhoneNumber { get; init; }
 
         public char? Gender { get; init; }
+        public PickUpAddressDisplayDto? Address { get; set; }
     }
 }

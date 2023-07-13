@@ -44,18 +44,6 @@ namespace ACX.Service.Services
         {
             var services = await _repositoryManager.ProviderServiceRepository.GetAllProviderServiceAsync(false);
             var servicesDto = _mapper.Map<IEnumerable<ProviderServiceDisplayDto>>(services);
-            foreach (var serviceDto in servicesDto)
-            {
-                var serviceProvider = await _repositoryManager.ServiceProviderRepository
-                    .GetServiceProviderByIdAsync(serviceDto.ServiceProviderId, trackChanges)
-                    ??throw new ServiceProviderNotFoundException(serviceDto.ServiceProviderId);
-                var serviceType = await _repositoryManager.Ref_Service_Type_Repository.GetServiceTypeById(serviceDto.Ref_Service_Type_ID)
-                    ?? throw new Ref_Service_Type_NotFoundException(serviceDto.Ref_Service_Type_ID);
-                var serviceProviderDto = _mapper.Map<ServiceProviderDisplayDto>(serviceProvider);
-                var serviceTypeDto = _mapper.Map<Ref_Service_Type_Display_Dto>(serviceType);
-                serviceDto.ServiceProviderDisplayDto=serviceProviderDto;
-                serviceDto.Ref_Service_Type_Display_Dto=serviceTypeDto;
-            }
             return servicesDto;
         }
 
@@ -63,36 +51,21 @@ namespace ACX.Service.Services
         {
             var service = await _repositoryManager.ProviderServiceRepository.GetProviderServiceByIdAsync(id, false);
             var serviceDto = _mapper.Map<ProviderServiceDisplayDto>(service);
-            
-            var serviceProvider = await _repositoryManager.ServiceProviderRepository
-                .GetServiceProviderByIdAsync(serviceDto.ServiceProviderId, trackChanges)
-                ?? throw new ServiceProviderNotFoundException(serviceDto.ServiceProviderId);
-            var serviceType = await _repositoryManager.Ref_Service_Type_Repository.GetServiceTypeById(serviceDto.Ref_Service_Type_ID)
-                ?? throw new Ref_Service_Type_NotFoundException(serviceDto.Ref_Service_Type_ID);
-            var serviceProviderDto = _mapper.Map<ServiceProviderDisplayDto>(serviceProvider);
-            var serviceTypeDto = _mapper.Map<Ref_Service_Type_Display_Dto>(serviceType);
-            serviceDto.ServiceProviderDisplayDto = serviceProviderDto;
-            serviceDto.Ref_Service_Type_Display_Dto = serviceTypeDto;
-           
             return serviceDto;
         }
 
-        public async Task<IEnumerable<ProviderServiceDisplayDto>> GetProviderServicesByServiceProviderId(Guid providerId, bool trackChanges)
+        public async Task<IEnumerable<ProviderServiceDisplayDto>> GetProviderServiceByServiceTypeAndLocation(int serviceType, int serviceLocation, bool trackChanges)
+        {
+            var services = await _repositoryManager.ProviderServiceRepository.GetAllProviderServiceByServiceTypeIdAsync(serviceType, false);
+            var servicesFilter= services.Where(s=>s.ServiceProvider.Ref_Service_Location_Id.Equals(serviceLocation)).ToList();
+            var serviceDto = _mapper.Map<IEnumerable<ProviderServiceDisplayDto>>(servicesFilter);
+            return serviceDto;
+        }
+
+        public async Task<IEnumerable<ProviderServiceDisplayDto>> GetProviderServicesByServiceProviderId(string providerId, bool trackChanges)
         {
             var services = await _repositoryManager.ProviderServiceRepository.GetAllProviderServiceByProviderIdAsync(providerId, false);
             var servicesDto = _mapper.Map<IEnumerable<ProviderServiceDisplayDto>>(services);
-            foreach (var serviceDto in servicesDto)
-            {
-                var serviceProvider = await _repositoryManager.ServiceProviderRepository
-                    .GetServiceProviderByIdAsync(serviceDto.ServiceProviderId, trackChanges)
-                    ?? throw new ServiceProviderNotFoundException(serviceDto.ServiceProviderId);
-                var serviceType = await _repositoryManager.Ref_Service_Type_Repository.GetServiceTypeById(serviceDto.Ref_Service_Type_ID)
-                    ?? throw new Ref_Service_Type_NotFoundException(serviceDto.Ref_Service_Type_ID);
-                var serviceProviderDto = _mapper.Map<ServiceProviderDisplayDto>(serviceProvider);
-                var serviceTypeDto = _mapper.Map<Ref_Service_Type_Display_Dto>(serviceType);
-                serviceDto.ServiceProviderDisplayDto = serviceProviderDto;
-                serviceDto.Ref_Service_Type_Display_Dto = serviceTypeDto;
-            }
             return servicesDto;
         }
 
@@ -100,18 +73,6 @@ namespace ACX.Service.Services
         {
             var services = await _repositoryManager.ProviderServiceRepository.GetAllProviderServiceByServiceTypeIdAsync(serviceTypeId, false);
             var servicesDto = _mapper.Map<IEnumerable<ProviderServiceDisplayDto>>(services);
-            foreach (var serviceDto in servicesDto)
-            {
-                var serviceProvider = await _repositoryManager.ServiceProviderRepository
-                    .GetServiceProviderByIdAsync(serviceDto.ServiceProviderId, trackChanges)
-                    ?? throw new ServiceProviderNotFoundException(serviceDto.ServiceProviderId);
-                var serviceType = await _repositoryManager.Ref_Service_Type_Repository.GetServiceTypeById(serviceDto.Ref_Service_Type_ID)
-                    ?? throw new Ref_Service_Type_NotFoundException(serviceDto.Ref_Service_Type_ID);
-                var serviceProviderDto = _mapper.Map<ServiceProviderDisplayDto>(serviceProvider);
-                var serviceTypeDto = _mapper.Map<Ref_Service_Type_Display_Dto>(serviceType);
-                serviceDto.ServiceProviderDisplayDto = serviceProviderDto;
-                serviceDto.Ref_Service_Type_Display_Dto = serviceTypeDto;
-            }
             return servicesDto;
         }
 

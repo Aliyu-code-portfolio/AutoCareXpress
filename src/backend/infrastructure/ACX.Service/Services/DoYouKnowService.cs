@@ -36,5 +36,13 @@ namespace ACX.Service.Services
             return doYouKnowDto;
 
         }
+
+        public async Task<DoYouKnowDisplayDto> GetRandomDoYouKnow()
+        {
+            var doYouKnow = await _repositoryManager.DoYouKnowRepository.GetRandomDoYouKnow()
+                ?? throw new NotFoundException("No latest DoYouKnow article");
+            var doYouKnowDto = _mapper.Map<DoYouKnowDisplayDto>(doYouKnow);
+            return doYouKnowDto;
+        }
     }
 }

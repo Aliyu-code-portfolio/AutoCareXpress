@@ -11,9 +11,9 @@ namespace ACX.ServiceContract.Interfaces
 {
     public interface IPickUpAddressService
     {
-        Task<PickUpAddressDisplayDto> GetUserPickUpAddress(Guid userId, bool trackChanges);
+        Task<PickUpAddressDisplayDto> GetUserPickUpAddress(string userId, bool trackChanges);
         Task<PickUpAddressDisplayDto> CreateUserPickUpAddress(PickUpAddressCreationDto pickUpAddressCreationDto);
         Task UpdatePickUpAddress(PickUpAddressUpdateDto pickUpAddressUpdateDto);
-        Task DeletePickUpAddress(Guid id);
+        Task DeletePickUpAddress(string id);
     }
 }

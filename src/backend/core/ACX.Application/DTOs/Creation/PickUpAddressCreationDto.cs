@@ -9,7 +9,7 @@ namespace ACX.Application.DTOs.Creation
 {
     public record PickUpAddressCreationDto
     {
-        public Guid UserId { get; init; }
+        public string UserId { get; init; }
 
         [Required(ErrorMessage = "BuildingNumber is required")]
         [StringLength(5, ErrorMessage = "BuildingNumber must be at most 10 characters")]

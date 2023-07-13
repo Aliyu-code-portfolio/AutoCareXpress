@@ -24,9 +24,9 @@ namespace ACX.EndsPoint.Controllers
         
 
         // GET id
-        [HttpGet("{id:Guid}", Name = "GetPickUpById")]
+        [HttpGet("{id}", Name = "GetPickUpById")]
         [HttpHead]
-        public async Task<ActionResult> GetPickUpById(Guid id)
+        public async Task<ActionResult> GetPickUpById(string id)
         {
             var result = await _serviceManager.PickUpAddressService.GetUserPickUpAddress(id, false);
             return Ok(result);
@@ -49,8 +49,8 @@ namespace ACX.EndsPoint.Controllers
         }
 
         // DELETE 
-        [HttpDelete("{id:Guid}")]
-        public async Task<ActionResult> DeletePickUpAddress(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeletePickUpAddress(string id)
         {
             await _serviceManager.PickUpAddressService.DeletePickUpAddress(id);
             return NoContent();

@@ -47,19 +47,26 @@ namespace ACX.EndsPoint.Controllers
 
         // GET id
         [HttpGet("provider/{id}")]
-        public async Task<ActionResult> GetByProviderId(Guid id)
+        public async Task<ActionResult> GetByProviderId(string id)
         {
             var result = await _serviceManager.ProviderServiceService.GetProviderServicesByServiceProviderId(id, false);
             return Ok(result);
         }
 
+        // GET services for request
+        [HttpGet("request/{location}/{type}")]
+        public async Task<ActionResult> GetUserServiceRequest(int location, int type)
+        {
+            var result = await _serviceManager.ProviderServiceService.GetProviderServiceByServiceTypeAndLocation(type, location, false);
+            return Ok(result);
+        }
 
         // POST 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] ProviderServiceCreationDto providerServiceCreationDto)
         {
             var result = await _serviceManager.ProviderServiceService.CreateProviderService(providerServiceCreationDto);
-            return CreatedAtAction(nameof(GetById), new { id = result.Id });
+            return CreatedAtAction(nameof(GetById), new { id = result.Id },result);
         }
 
         // PUT 
@@ -72,7 +79,7 @@ namespace ACX.EndsPoint.Controllers
 
         // DELETE 
         [HttpDelete("{id:Guid}")]
-        public async Task<ActionResult> DeleteUser(Guid id)
+        public async Task<ActionResult> DeleteProvider(string id)
         {
             await _serviceManager.UserService.DeleteUser(id);
             return NoContent();

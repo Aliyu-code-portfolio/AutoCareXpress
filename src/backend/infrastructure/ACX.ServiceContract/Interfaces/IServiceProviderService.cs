@@ -14,11 +14,13 @@ namespace ACX.ServiceContract.Interfaces
     public interface IServiceProviderService
     {
         Task<(IEnumerable<ServiceProviderDisplayDto> Providers, MetaData MetaData)> GetAllServiceProviders(ProviderRequestParameter requestParameter);
-        Task<ServiceProviderDisplayDto> GetServiceProviderById(Guid id);
+        Task<IEnumerable<ServiceProviderDisplayDto>> GetProductByLocation(int id);
+        Task<ServiceProviderDisplayDto> GetServiceProviderById(string id);
         Task<ServiceProviderDisplayDto> GetServiceProviderByEmail(string email);
         Task<ServiceProviderDisplayDto> GerServiceProviderByRegNumber(string regNumber);
         Task<ServiceProviderDisplayDto> CreateServiceProvider(ServiceProviderCreationDto serviceProviderCreationDto);
         Task UpdateServiceProvider(ServiceProviderUpdateDto serviceProviderUpdateDto);
-        Task DeleteServiceProvider(Guid id);
+        Task DeleteServiceProvider(string id);
+        Task UpdateStatus(string id,bool flag);
     }
 }

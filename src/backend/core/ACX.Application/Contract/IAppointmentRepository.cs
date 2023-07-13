@@ -14,8 +14,9 @@ namespace ACX.Application.Contract
         Task<PagedList<Appointment>> GetAllAppointmentAsync(AppointmentRequestParameters requestParameters, bool trackChanges);
         Task<Appointment> GetAppointmentByIdAsync(int id, bool trackChanges);
         Task<IEnumerable<Appointment>> GetAppointmentsByStatusAsync(bool status, bool trackChanges);
-        Task<PagedList<Appointment>> GetAppointmentsByUserIdAsync(Guid userId, AppointmentRequestParameters requestParameters, bool trackChanges);
-        Task<PagedList<Appointment>> GetAppointmentsByServiceProviderIdAsync(Guid serviceProviderId, AppointmentRequestParameters requestParameters, bool trackChanges);
+        Task<PagedList<Appointment>> GetAppointmentsByUserIdAsync(string userId, AppointmentRequestParameters requestParameters, bool trackChanges);
+        Task<PagedList<Appointment>> GetAppointmentsByServiceProviderIdAsync(string serviceProviderId, AppointmentRequestParameters requestParameters, bool trackChanges);
+        void UpdateAppointment(Appointment appointment);
         void CreateAppointment(Appointment appointment);
         void DeleteAppointment(Appointment appointment);
     }

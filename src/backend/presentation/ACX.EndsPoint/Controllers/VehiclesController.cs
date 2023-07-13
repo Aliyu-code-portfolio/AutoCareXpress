@@ -18,15 +18,15 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
-        public async Task<ActionResult> GetAllVehicles(bool trackChanges)
+        public async Task<ActionResult> GetAllVehicles()
         {
-            var result = await _serviceManager.VehicleService.GetAllVehicles(trackChanges);
+            var result = await _serviceManager.VehicleService.GetAllVehicles(false);
             return Ok(result);
         }
 
         // GET
         [HttpGet("user/{userId}")]
-        public async Task<ActionResult> GetAllUserVehicles(Guid userId)
+        public async Task<ActionResult> GetAllUserVehicles(string userId)
         {
             var result = await _serviceManager.VehicleService.GetAllUserVehicles(userId, false);
             return Ok(result);
@@ -45,7 +45,7 @@ namespace ACX.EndsPoint.Controllers
         public async Task<ActionResult> Post([FromBody] VehicleCreationDto vehicleCreationDto)
         {
             var result = await _serviceManager.VehicleService.CreateVehicle(vehicleCreationDto);
-            return CreatedAtAction(nameof(GetById), new {id=result.Id});
+            return CreatedAtAction(nameof(GetById), new {id=result.Id},result);
         }
 
         // PUT 

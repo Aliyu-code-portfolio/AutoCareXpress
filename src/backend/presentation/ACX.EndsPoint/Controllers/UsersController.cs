@@ -24,7 +24,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
-        [Authorize(Roles ="Manager")]
+        //[Authorize(Roles ="Manager")]
         public async Task<ActionResult> GetAllUsers([FromQuery] UserRequestParameter requestParameter)
         {
             var result = await _serviceManager.UserService.GetAllUsers(requestParameter);
@@ -35,13 +35,13 @@ namespace ACX.EndsPoint.Controllers
 
         // GET id
         [HttpGet("{id}", Name = "GetUserById")]
-        public async Task<ActionResult> GetUserById(Guid id)
+        public async Task<ActionResult> GetUserById(string id)
         {
             var result = await _serviceManager.UserService.GetUserById(id);
             return Ok(result);
         }
         // GET email
-        [HttpGet("email/{id}", Name = "GetUserByEmail")]
+        [HttpGet("email/{email}", Name = "GetUserByEmail")]
         public async Task<ActionResult> GetUserByEmail(string email)
         {
             var result = await _serviceManager.UserService.GetUserByEmail(email);
@@ -67,7 +67,7 @@ namespace ACX.EndsPoint.Controllers
 
         // DELETE 
         [HttpDelete("{id:Guid}")]
-        public async Task<ActionResult> DeleteUser(Guid id)
+        public async Task<ActionResult> DeleteUser(string id)
         {
             await _serviceManager.UserService.DeleteUser(id);
             return NoContent();

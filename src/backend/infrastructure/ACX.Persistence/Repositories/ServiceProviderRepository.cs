@@ -31,13 +31,13 @@ namespace ACX.Persistence.Repositories
         public async Task<PagedList<ServiceProvider>> GetAllServiceProviderAsync(ProviderRequestParameter requestParameter, bool trackChanges)
         {
             var serviceProviders = await FindAll(trackChanges).Skip((requestParameter.PageNumber-1)*requestParameter.PageSize)
-                .Take(requestParameter.PageSize).Where(p=>p.CompanyName.ToLower().Contains(requestParameter.SearchTerm.ToLower())).ToListAsync();
+                .Take(requestParameter.PageSize).ToListAsync();
             var count = await FindAll(false).CountAsync();
 
             return new PagedList<ServiceProvider>(serviceProviders, count, requestParameter.PageNumber,requestParameter.PageSize);
         }
 
-        public async Task<ServiceProvider> GetServiceProviderByIdAsync(Guid id, bool trackChanges)
+        public async Task<ServiceProvider> GetServiceProviderByIdAsync(string id, bool trackChanges)
         {
             var serviceProvider = await FindByCondition(s => s.Id.Equals(id), trackChanges).FirstOrDefaultAsync();
             return serviceProvider;
@@ -58,6 +58,11 @@ namespace ACX.Persistence.Repositories
         public void UpdateServiceProvider(ServiceProvider serviceProvider)
         {
             Update(serviceProvider);
+        }
+
+        public async Task<IEnumerable<ServiceProvider>> GetAllServiceByLocation(int id)
+        {
+            return await FindByCondition(p=>p.Ref_Service_Location_Id.Equals(id),false).ToListAsync();
         }
     }
 }

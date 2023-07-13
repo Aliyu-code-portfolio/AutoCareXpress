@@ -15,13 +15,13 @@ namespace ACX.Application.DTOs.Update
         public int Id { get; init; }
 
         [Required(ErrorMessage = "Service Provider ID is required")]
-        public Guid ServiceProviderId { get; init; }
+        public string? ServiceProviderId { get; init; }
 
         [Required(ErrorMessage = "Provider Service ID is required")]
-        public Guid ProviderServiceId { get; init; }
+        public int? ProviderServiceId { get; init; }
 
         [Required(ErrorMessage = "Service Type ID is required")]
-        public Guid Ref_Service_Type_Id { get; init; }
+        public string? Ref_Service_Type_Id { get; init; }
         [StringLength(int.MaxValue)]
 
         public string? Description { get; set; }

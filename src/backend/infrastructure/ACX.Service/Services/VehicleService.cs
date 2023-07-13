@@ -25,6 +25,9 @@ namespace ACX.Service.Services
         }
         public async Task<VehicleDisplayDto> CreateVehicle(VehicleCreationDto vehicleCreationDto)
         {
+            var v = await _repositoryManager.UserRepository.GetUserByIdAsync(vehicleCreationDto.UserId, false)
+                ?? throw new UserNotFoundException(vehicleCreationDto.UserId);
+
             var vehicle = _mapper.Map<Vehicle>(vehicleCreationDto);
             _repositoryManager.Vehicle_Repository.CreateVehicle(vehicle);
             await _repositoryManager.SaveChangesAsync();
@@ -40,7 +43,7 @@ namespace ACX.Service.Services
             await _repositoryManager.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<VehicleDisplayDto>> GetAllUserVehicles(Guid userId, bool trackChanges)
+        public async Task<IEnumerable<VehicleDisplayDto>> GetAllUserVehicles(string userId, bool trackChanges)
         {
             var vehicles = await _repositoryManager.Vehicle_Repository.GetAllUserVehicle(userId, false);
             var vehiclesDto = _mapper.Map<IEnumerable<VehicleDisplayDto>>(vehicles);

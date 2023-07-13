@@ -28,31 +28,32 @@ namespace ACX.Persistence.Repositories
 
         public async Task<IEnumerable<ProviderService>> GetAllProviderServiceAsync(bool trackChanges)
         {
-            var providerServices = await FindAll(trackChanges).ToListAsync();
+            var providerServices = await FindAll(trackChanges).Include(s => s.ServiceProvider).Include(s => s.Ref_Service_Type).ToListAsync();
             return providerServices;
         }
         
-        public async Task<IEnumerable<ProviderService>> GetAllProviderServiceByProviderIdAsync(Guid providerId, bool trackChanges)
+        public async Task<IEnumerable<ProviderService>> GetAllProviderServiceByProviderIdAsync(string providerId, bool trackChanges)
         {
-            var providerService = await FindByCondition(p => p.ServiceProviderId.Equals(providerId), trackChanges).ToListAsync();
+            var providerService = await FindByCondition(p => p.ServiceProviderId.Equals(providerId), trackChanges).Include(s => s.ServiceProvider).Include(s => s.Ref_Service_Type).ToListAsync();
             return providerService;
         }
         public async Task<IEnumerable<ProviderService>> GetAllProviderServiceByServiceTypeIdAsync(int id, bool trackChanges)
         {
-            var providerServices = await FindByCondition(p => p.Ref_Service_Type_ID.Equals(id), trackChanges).ToListAsync();
+            var providerServices = await FindByCondition(p => p.Ref_Service_Type_ID.Equals(id), trackChanges).Include(s=>s.ServiceProvider).Include(s=>s.Ref_Service_Type).ToListAsync();
             return providerServices;
         }
 
         public async Task<ProviderService> GetProviderServiceByIdAsync(int id, bool trackChanges)
         {
-            var providerService = await FindByCondition(p => p.Id.Equals(id), trackChanges).FirstOrDefaultAsync();
+            var providerService = await FindByCondition(p => p.Id.Equals(id), trackChanges).Include(s => s.ServiceProvider).Include(s => s.Ref_Service_Type).FirstOrDefaultAsync();
             return providerService;
         }
 
         public async Task<ProviderService> GetProviderServiceByMinPriceAsync(decimal minPrice, bool trackChanges)
         {
-            var providerServices = await FindByCondition(p => p.MinPrice>=minPrice, trackChanges).FirstOrDefaultAsync();
+            var providerServices = await FindByCondition(p => p.MinPrice >= minPrice, trackChanges).Include(s => s.ServiceProvider).Include(s => s.Ref_Service_Type).FirstOrDefaultAsync();
             return providerServices;
         }
+
     }
 }

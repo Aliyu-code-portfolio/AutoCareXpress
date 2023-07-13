@@ -15,6 +15,7 @@ namespace ACX.WebAPI.ProfileMapping
             CreateMap<UserRegistrationDto, User>();
             CreateMap<UserUpdateDto, User>();
             CreateMap<ServiceProvider, ServiceProviderDisplayDto>();
+            CreateMap<ServiceProviderCreationDto, User>();
             CreateMap<ServiceProviderCreationDto, ServiceProvider>();
             CreateMap<ServiceProviderUpdateDto, ServiceProvider>();
             CreateMap<PickUpAddress, PickUpAddressDisplayDto>();
