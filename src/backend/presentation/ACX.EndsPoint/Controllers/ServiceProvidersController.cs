@@ -2,6 +2,7 @@
 using ACX.Application.DTOs.Update;
 using ACX.ServiceContract.Common;
 using ACX.Shared.RequestFeatures.ModelRequestParameters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
@@ -11,6 +12,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/providers")]
     [ApiController]
+    [Authorize]
     public class ServiceProvidersController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -22,6 +24,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
+        [Authorize(Roles ="Manager")]
         public async Task<ActionResult> GetAllServiceProviders([FromQuery] ProviderRequestParameter requestParameter)
         {
             var result = await _serviceManager.ServiceProviderService.GetAllServiceProviders(requestParameter);

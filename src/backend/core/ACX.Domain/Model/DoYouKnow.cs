@@ -13,7 +13,7 @@ namespace ACX.Domain.Model
         [Key]
         public int Id { get; set; }
         [Required(ErrorMessage ="Title is required")]
-        [StringLength(50,ErrorMessage ="The length of title is between 1 to 10 characters")]
+        [StringLength(100,ErrorMessage ="The length of title is between 1 to 10 characters")]
         public string? Title { get; set; }
 
         [Required(ErrorMessage = "Description is required")]

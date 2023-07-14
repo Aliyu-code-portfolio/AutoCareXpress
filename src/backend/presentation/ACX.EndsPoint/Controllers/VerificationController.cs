@@ -38,32 +38,22 @@ namespace ACX.EndsPoint.Controllers
 
         ///
         //Verification token
-        [HttpPost("verify/forget/{id}/{payload}")]
+        [HttpPost("verify/forget/{id}/{payload}/{password}")]
         [ServiceFilter(typeof(ValidationActionFilter))]
-        public async Task<ActionResult> VerifyForgot(UserForAuthenticationDto userForAuthenticationDto)
+        public async Task<ActionResult> VerifyForgot(string id, int payload, string password)
         {
-            if (!await _service.AuthenticationService.ValidateUser(userForAuthenticationDto))
-            {
-                return Unauthorized();
-            }
-            var tokenDto = await _service.AuthenticationService
-.CreateToken(populateExp: true);
-            return Ok(tokenDto);
+            await _service.AuthenticationService.VerifyPasswordForgot(id, payload, password);
+            return Ok("Successfully changed password");
 
         }
 
         //Verification token
         [HttpPost("forgot/{id}")]
         [ServiceFilter(typeof(ValidationActionFilter))]
-        public async Task<ActionResult> ForgetPassword(UserForAuthenticationDto userForAuthenticationDto)
+        public async Task<ActionResult> ForgetPassword(string id)
         {
-            if (!await _service.AuthenticationService.ValidateUser(userForAuthenticationDto))
-            {
-                return Unauthorized();
-            }
-            var tokenDto = await _service.AuthenticationService
-.CreateToken(populateExp: true);
-            return Ok(tokenDto);
+            await _service.AuthenticationService.SendPasswordResetCode(id);
+            return Ok("Check email and verify");
 
         }
 

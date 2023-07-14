@@ -13,7 +13,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/users")]
     [ApiController]
-
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -24,7 +24,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
-        //[Authorize(Roles ="Manager")]
+        [Authorize(Roles ="Manager")]
         public async Task<ActionResult> GetAllUsers([FromQuery] UserRequestParameter requestParameter)
         {
             var result = await _serviceManager.UserService.GetAllUsers(requestParameter);

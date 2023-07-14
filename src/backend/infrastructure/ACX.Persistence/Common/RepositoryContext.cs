@@ -21,6 +21,7 @@ namespace ACX.Persistence.Common
             modelBuilder.ApplyConfiguration(new ServiceLocationConfiguration());
             modelBuilder.ApplyConfiguration(new ServiceTypeConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new DoYouKnowConfiguration());
         }
         public DbSet<User> Users { get; set; }
         public DbSet<ServiceProvider> ServiceProviders { get; set; }

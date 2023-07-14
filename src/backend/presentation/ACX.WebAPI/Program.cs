@@ -1,6 +1,7 @@
 using ACX.Application.Common;
 using ACX.EndsPoint.ActionFilters;
 using ACX.WebAPI.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
 
@@ -21,6 +22,7 @@ builder.Services.ConfigureVersioning();
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJWT(builder.Configuration);
+builder.Services.ConfigureSwagger();
 
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(ACX.EndsPoint.AssemblyReference).Assembly);

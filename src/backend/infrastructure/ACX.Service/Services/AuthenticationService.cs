@@ -153,9 +153,11 @@ namespace ACX.Service.Services
             var result = await _userManager.CreateAsync(user,
             userRegistrationDto.Password);
             if (result.Succeeded)
+            {
                 await _userManager.AddToRolesAsync(user, userRegistrationDto.Roles);
-            _user = user;
-            await SendOTPEmail(user.Id, user.Email);
+                await SendOTPEmail(user);
+
+            }
             return result;
         }
 
@@ -167,27 +169,28 @@ namespace ACX.Service.Services
             var result = await _userManager.CreateAsync(user,
             serviceProviderCreationDto.Password);
             if (result.Succeeded)
+            {
                 await _userManager.AddToRolesAsync(user, serviceProviderCreationDto.Roles);
-            var providerModel = _mapper.Map<ServiceProvider>(serviceProviderCreationDto);
-            providerModel.Id=user.Id;
-            _repositoryManager.ServiceProviderRepository.CreateServiceProvider(providerModel);
-            await _repositoryManager.SaveChangesAsync();
-            _user = user;
-            await SendOTPEmail(user.Id, user.Email);
+                var providerModel = _mapper.Map<ServiceProvider>(serviceProviderCreationDto);
+                providerModel.Id=user.Id;
+                _repositoryManager.ServiceProviderRepository.CreateServiceProvider(providerModel);
+                await _repositoryManager.SaveChangesAsync();
+                await SendOTPEmail(user);
+
+            }
             return result;
         }
 
-        private async Task SendOTPEmail(string id, string email)
-        {//Use outlook
+        private async Task SendOTPEmail(User user)
+        {
             var code = new Random().Next(1234,9899);
             var body = $"Hi, Welcome to AutoCareXpress \n\nYour One Time Password (OTP) is {code}. " +
                 $"Use this code to verify your Email Address on AutoCareXpress\n\nDo not share this message with anyone. " +
                 $"This code is valid for 10 minutes";
-            await _emailSender.SendEmailAsync(email, "Verify Your Account AUTOCAREXPRESS", body);
-            
-            _user.EmailVerifyCode = code;
-            _user.EmailTokenExpiryDate = DateTime.Now.AddMinutes(10);
-            _repositoryManager.UserRepository.UpdateUser(_user);
+            await _emailSender.SendEmailAsync(user.Email, "Verify Your Account AUTOCAREXPRESS", body);
+            user.EmailVerifyCode = code;
+            user.EmailTokenExpiryDate = DateTime.Now.AddMinutes(10);
+            _repositoryManager.UserRepository.UpdateUser(user);
             await _repositoryManager.SaveChangesAsync();
         }
 
@@ -209,8 +212,7 @@ namespace ACX.Service.Services
             {
                 throw new VerificationFailException("Email already verified");
             }
-            _user = user;
-            await SendOTPEmail(id, user.Email);
+            await SendOTPEmail(user);
         }
 
         public async Task VerifyEmail(string id, int payload)
@@ -230,6 +232,28 @@ namespace ACX.Service.Services
             user.EmailConfirmed = true;
             _repositoryManager.UserRepository.UpdateUser(user);
             await _repositoryManager.SaveChangesAsync();
+        }
+
+        public async Task SendPasswordResetCode(string id )
+        {
+            var user = await _repositoryManager.UserRepository.GetUserByIdAsync(id, false)
+                ?? throw new UserNotFoundException(id);
+
+            var code = new Random().Next(1234, 9899);
+            var body = $"Dear, Dear Esteemed \n\nYour One Time Password (OTP) is {code}. " +
+                $"Use this code to change your password on AutoCareXpress\n\nDo not share this message with anyone. " +
+                $"This code is valid for 10 minutes";
+            //await _emailSender.SendEmailAsync(user.Email, "Verify Your Account AUTOCAREXPRESS", body);
+            user.PasswordResetCode = code;
+            user.PasswordChangeTokenExpiryDate = DateTime.Now.AddMinutes(10);
+            _repositoryManager.UserRepository.UpdateUser(user);
+            await _repositoryManager.SaveChangesAsync();
+        }
+
+        public async Task VerifyPasswordForgot(string id, int payload, string password)
+        {
+            var user = await _repositoryManager.UserRepository.GetUserByIdAsync(id, false)
+                ?? throw new UserNotFoundException(id);
         }
     }
 }

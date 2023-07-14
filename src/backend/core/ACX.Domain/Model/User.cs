@@ -19,7 +19,7 @@ namespace ACX.Domain.Model
         [RegularExpression("^[MF]$", ErrorMessage = "Gender must be either 'M' or 'F'.")]
         public char? Gender { get; set; }
         public int? EmailVerifyCode { get; set; }
-        public string? PasswordResetCode { get; set; }
+        public int? PasswordResetCode { get; set; }
         public DateTime? EmailVerifyDate { get; set; }
         public DateTime? LastPasswordChangeDate { get; set; }
         public DateTime? EmailTokenExpiryDate { get; set; } = null;

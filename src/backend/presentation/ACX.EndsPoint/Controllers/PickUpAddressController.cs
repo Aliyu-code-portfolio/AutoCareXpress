@@ -2,6 +2,7 @@
 using ACX.Application.DTOs.Update;
 using ACX.EndsPoint.ActionFilters;
 using ACX.ServiceContract.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace ACX.EndsPoint.Controllers
         // GET id
         [HttpGet("{id}", Name = "GetPickUpById")]
         [HttpHead]
+        [Authorize]
         public async Task<ActionResult> GetPickUpById(string id)
         {
             var result = await _serviceManager.PickUpAddressService.GetUserPickUpAddress(id, false);
@@ -33,6 +35,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [ServiceFilter(typeof(ValidationActionFilter))]
         public async Task<ActionResult> AddPickUpAddress(PickUpAddressCreationDto pickUpAddressCreationDto)
         {
@@ -42,6 +45,7 @@ namespace ACX.EndsPoint.Controllers
 
         // PUT 
         [HttpPut()]
+        [Authorize]
         public async Task<ActionResult> Put([FromBody] PickUpAddressUpdateDto pickUpAddressUpdateDto)
         {
             await _serviceManager.PickUpAddressService.UpdatePickUpAddress(pickUpAddressUpdateDto);
@@ -50,12 +54,14 @@ namespace ACX.EndsPoint.Controllers
 
         // DELETE 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult> DeletePickUpAddress(string id)
         {
             await _serviceManager.PickUpAddressService.DeletePickUpAddress(id);
             return NoContent();
         }
         [HttpOptions]
+        [Authorize]
         public IActionResult Options()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, PUT");

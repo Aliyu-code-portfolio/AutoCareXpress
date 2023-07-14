@@ -1,6 +1,7 @@
 ﻿using ACX.Application.DTOs.Creation;
 using ACX.Application.DTOs.Update;
 using ACX.ServiceContract.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ACX.EndsPoint.Controllers
@@ -8,6 +9,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/vehicles")]
     [ApiController]
+    [Authorize]
     public class VehiclesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -18,6 +20,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
+        [Authorize]
         public async Task<ActionResult> GetAllVehicles()
         {
             var result = await _serviceManager.VehicleService.GetAllVehicles(false);

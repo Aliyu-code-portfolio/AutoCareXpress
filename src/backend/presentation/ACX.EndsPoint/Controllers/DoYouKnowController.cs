@@ -1,4 +1,5 @@
 ﻿using ACX.ServiceContract.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -7,6 +8,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/doyouknow")]
     [ApiController]
+    [Authorize]
     public class DoYouKnowController:ControllerBase
     {
         private readonly IServiceManager _serviceManager;

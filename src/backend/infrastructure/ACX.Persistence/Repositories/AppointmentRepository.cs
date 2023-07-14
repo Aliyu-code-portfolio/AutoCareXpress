@@ -31,7 +31,7 @@ namespace ACX.Persistence.Repositories
         public async Task<PagedList<Appointment>> GetAllAppointmentAsync(AppointmentRequestParameters requestParameters, bool trackChanges)
         {
             var appointments = await FindAll(trackChanges).Skip((requestParameters.PageNumber-1)*requestParameters.PageSize)
-                .Take(requestParameters.PageSize).ToListAsync();
+                .Take(requestParameters.PageSize).OrderByDescending(a=>a.CreatedDate).ToListAsync();
             var count = await FindAll(false).CountAsync();
 
             return new PagedList<Appointment>(appointments,count,requestParameters.PageNumber,requestParameters.PageSize);
@@ -46,7 +46,7 @@ namespace ACX.Persistence.Repositories
         public async Task<PagedList<Appointment>> GetAppointmentsByServiceProviderIdAsync(string serviceProviderId, AppointmentRequestParameters requestParameters, bool trackChanges)
         {
             var appointments = await FindByCondition(a => a.ServiceProviderId.Equals(serviceProviderId), trackChanges).Skip((requestParameters.PageNumber - 1) * requestParameters.PageSize)
-                .Take(requestParameters.PageSize).ToListAsync();
+                .Take(requestParameters.PageSize).OrderByDescending(a => a.CreatedDate).ToListAsync();
             var count = await FindByCondition(a => a.ServiceProviderId.Equals(serviceProviderId), trackChanges).CountAsync();
 
             return new PagedList<Appointment>(appointments,count,requestParameters.PageNumber,requestParameters.PageSize);
@@ -61,7 +61,7 @@ namespace ACX.Persistence.Repositories
         public async Task<PagedList<Appointment>> GetAppointmentsByUserIdAsync(string userId, AppointmentRequestParameters requestParameters, bool trackChanges)
         {
             var appointments = await FindByCondition(a => a.UserId.Equals(userId), trackChanges).Skip((requestParameters.PageNumber - 1) * requestParameters.PageSize)
-                .Take(requestParameters.PageSize).ToListAsync();
+                .Take(requestParameters.PageSize).OrderByDescending(a => a.CreatedDate).ToListAsync();
             var count = await FindByCondition(a => a.UserId.Equals(userId), trackChanges).CountAsync();
 
             return new PagedList<Appointment>(appointments, count, requestParameters.PageNumber, requestParameters.PageSize);

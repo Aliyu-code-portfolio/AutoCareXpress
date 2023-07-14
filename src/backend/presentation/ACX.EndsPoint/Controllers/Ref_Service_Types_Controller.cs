@@ -1,6 +1,7 @@
 ﻿using ACX.Application.DTOs.Creation;
 using ACX.Application.DTOs.Update;
 using ACX.ServiceContract.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ACX.EndsPoint.Controllers
@@ -8,6 +9,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/refservicetypes")]
     [ApiController]
+    [Authorize]
     public class Ref_Service_Types_Controller : ControllerBase
     {
         private readonly IServiceManager _serviceManager;

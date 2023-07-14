@@ -1,6 +1,7 @@
 ﻿using ACX.Application.DTOs.Creation;
 using ACX.Application.DTOs.Update;
 using ACX.ServiceContract.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/services")]
     [ApiController]
+    [Authorize]
     public class ProviderServicesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -23,6 +25,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
+        [Authorize(Roles ="Manager")]
         public async Task<ActionResult> GetAllProvidersService()
         {
             var result = await _serviceManager.ProviderServiceService.GetAllProviderServices(trackChanges: false);

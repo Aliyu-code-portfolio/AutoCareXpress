@@ -25,11 +25,11 @@ namespace ACX.Service.Email
             {
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("no-reply.autocarexpress@outlook.com", "innovation123$")
+                Credentials = new NetworkCredential("verify.autocarexpress@outlook.com", "Junejuly2023")
             };
 
             return client.SendMailAsync(
-                new MailMessage(from: "no-reply.autocarexpress@outlook.com",
+                new MailMessage(from: "AutoCareXpress Inc",
                                 to: email,
                                 subject,
                                 message
