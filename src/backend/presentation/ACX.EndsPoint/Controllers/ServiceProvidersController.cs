@@ -12,7 +12,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/providers")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ServiceProvidersController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -24,7 +24,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
-        [Authorize(Roles ="Manager")]
+       // [Authorize(Roles ="Manager")]
         public async Task<ActionResult> GetAllServiceProviders([FromQuery] ProviderRequestParameter requestParameter)
         {
             var result = await _serviceManager.ServiceProviderService.GetAllServiceProviders(requestParameter);

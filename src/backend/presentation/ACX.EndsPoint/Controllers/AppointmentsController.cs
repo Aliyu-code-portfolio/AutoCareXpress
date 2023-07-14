@@ -15,7 +15,7 @@ namespace ACX.EndsPoint.Controllers
 {
     [ApiVersion("1.0")]
     [Route("api/appointments")]
-    [ApiController]
+    //[ApiController]
     public class AppointmentsController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -27,7 +27,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
-        [Authorize(Roles ="Manager")]
+        //[Authorize(Roles ="Manager")]
         public async Task<ActionResult> GetAllAppointments([FromQuery] AppointmentRequestParameters requestParameters)
         {
             var result = await _serviceManager.AppointmentService.GetAllAppointments(requestParameters, false);
@@ -38,7 +38,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         [HttpGet("user/{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> GetAllUserAppointments(string id, [FromQuery] AppointmentRequestParameters requestParameters)
         {
             var result = await _serviceManager.AppointmentService.GetAllUserAppointments(id, requestParameters, false);
@@ -62,7 +62,7 @@ namespace ACX.EndsPoint.Controllers
 
         // GET id
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> GetById(int id)
         {
             var result = await _serviceManager.AppointmentService.GetAppointmentById(id);
@@ -70,7 +70,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         [HttpPut("{id}/status/{flag}")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> Post(int id, bool flag)
         {
             await _serviceManager.AppointmentService.UpdateStatus(id,flag);
@@ -78,7 +78,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         [HttpPut("{id}/rate/{rating}")]
-        [Authorize(Roles ="User")]
+        //[Authorize(Roles ="User")]
         public async Task<ActionResult> Post(int id, int rating)
         {
             if(rating <0 || rating > 5)
@@ -91,7 +91,7 @@ namespace ACX.EndsPoint.Controllers
 
         // POST 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        //[Authorize(Roles = "User")]
         [ServiceFilter(typeof(ValidationActionFilter))]
         public async Task<ActionResult> Post([FromBody] AppointmentCreationDto appointmentsCreationDto)
         {

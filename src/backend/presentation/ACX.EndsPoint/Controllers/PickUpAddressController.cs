@@ -27,7 +27,7 @@ namespace ACX.EndsPoint.Controllers
         // GET id
         [HttpGet("{id}", Name = "GetPickUpById")]
         [HttpHead]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> GetPickUpById(string id)
         {
             var result = await _serviceManager.PickUpAddressService.GetUserPickUpAddress(id, false);
@@ -35,7 +35,7 @@ namespace ACX.EndsPoint.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         [ServiceFilter(typeof(ValidationActionFilter))]
         public async Task<ActionResult> AddPickUpAddress(PickUpAddressCreationDto pickUpAddressCreationDto)
         {
@@ -45,7 +45,7 @@ namespace ACX.EndsPoint.Controllers
 
         // PUT 
         [HttpPut()]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> Put([FromBody] PickUpAddressUpdateDto pickUpAddressUpdateDto)
         {
             await _serviceManager.PickUpAddressService.UpdatePickUpAddress(pickUpAddressUpdateDto);
@@ -54,14 +54,14 @@ namespace ACX.EndsPoint.Controllers
 
         // DELETE 
         [HttpDelete("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> DeletePickUpAddress(string id)
         {
             await _serviceManager.PickUpAddressService.DeletePickUpAddress(id);
             return NoContent();
         }
         [HttpOptions]
-        [Authorize]
+       // [Authorize]
         public IActionResult Options()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST, PUT");

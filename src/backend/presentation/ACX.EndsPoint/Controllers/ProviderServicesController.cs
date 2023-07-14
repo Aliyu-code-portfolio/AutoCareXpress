@@ -14,7 +14,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/services")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ProviderServicesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -25,7 +25,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
-        [Authorize(Roles ="Manager")]
+        //[Authorize(Roles ="Manager")]
         public async Task<ActionResult> GetAllProvidersService()
         {
             var result = await _serviceManager.ProviderServiceService.GetAllProviderServices(trackChanges: false);

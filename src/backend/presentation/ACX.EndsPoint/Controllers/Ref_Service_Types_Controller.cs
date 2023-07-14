@@ -9,7 +9,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/refservicetypes")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class Ref_Service_Types_Controller : ControllerBase
     {
         private readonly IServiceManager _serviceManager;

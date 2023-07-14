@@ -9,7 +9,7 @@ namespace ACX.EndsPoint.Controllers
     [ApiVersion("1.0")]
     [Route("api/vehicles")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class VehiclesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -20,7 +20,7 @@ namespace ACX.EndsPoint.Controllers
         // GET
         [HttpGet]
         [HttpHead]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> GetAllVehicles()
         {
             var result = await _serviceManager.VehicleService.GetAllVehicles(false);
