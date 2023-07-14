@@ -30,7 +30,7 @@ namespace ACX.EndsPoint.Controllers
                 }
                 return BadRequest(ModelState);
             }
-            return Ok(result.id);
+            return Ok();
         }
 
         //register for service providers
@@ -55,7 +55,7 @@ namespace ACX.EndsPoint.Controllers
                 }
                 return BadRequest(ModelState);
             }
-            return Ok(new {id= result.id });
+            return Ok();
         }
 
         //register for normal users
@@ -80,7 +80,7 @@ namespace ACX.EndsPoint.Controllers
                 }
                 return BadRequest(ModelState);
             }
-            return Ok(new { id = result.id });
+            return Ok();
         }
 
         //Login for every type of users

@@ -44,10 +44,10 @@ namespace ACX.Service.Services
 
         public async Task<TokenDto> CreateToken(bool populateExp)
         {
-            if(!_user.EmailConfirmed)
+            /*if(!_user.EmailConfirmed)
             {
                 throw new VerificationFailException(_user.Id);
-            }
+            }*/
             var signingCredentials = GetSigningCredentials();
             var claims = await GetClaims();
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
@@ -156,7 +156,7 @@ namespace ACX.Service.Services
             if (result.Succeeded)
             {
                 await _userManager.AddToRolesAsync(user, userRegistrationDto.Roles);
-                id=await SendOTPEmail(user);
+                //id=await SendOTPEmail(user);
 
             }
             return (result,id);
@@ -177,7 +177,7 @@ namespace ACX.Service.Services
                 providerModel.Id=user.Id;
                 _repositoryManager.ServiceProviderRepository.CreateServiceProvider(providerModel);
                 await _repositoryManager.SaveChangesAsync();
-                id = await SendOTPEmail(user);
+                //id = await SendOTPEmail(user);
 
             }
             return (result, id);
