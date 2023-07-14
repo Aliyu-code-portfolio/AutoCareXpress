@@ -11,8 +11,8 @@ namespace ACX.Application.Contract
     {
         Task<IEnumerable<Vehicle>> GetAllVehicle(bool trackChanges);
         Task<Vehicle?> GetVehicleById(int id, bool trackChanges);
-        Task<IEnumerable<Vehicle>> GetAllUserVehicle(Guid userId,bool trackChanges);
-        void CreatVehicle(Vehicle vehicle);
+        Task<IEnumerable<Vehicle>> GetAllUserVehicle(string userId,bool trackChanges);
+        void CreateVehicle(Vehicle vehicle);
         void UpdateVehicle(Vehicle vehicle);
         void DeleteVehicle(Vehicle vehicle);
     }

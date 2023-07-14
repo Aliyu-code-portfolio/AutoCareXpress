@@ -17,11 +17,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.Domain", "src\backend\c
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.Application", "src\backend\core\ACX.Application\ACX.Application.csproj", "{8652AAE4-FE56-4413-B4CD-80B8F26F5071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACX.Persistence", "src\backend\infrastructure\ACX.Persistence\ACX.Persistence.csproj", "{2BE22D77-C846-4B09-B9F9-3473342C0166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.Persistence", "src\backend\infrastructure\ACX.Persistence\ACX.Persistence.csproj", "{2BE22D77-C846-4B09-B9F9-3473342C0166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACX.ServiceContract", "src\backend\infrastructure\ACX.ServiceContract\ACX.ServiceContract.csproj", "{2D028D91-5D6F-44FE-9024-378758F1D088}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.ServiceContract", "src\backend\infrastructure\ACX.ServiceContract\ACX.ServiceContract.csproj", "{2D028D91-5D6F-44FE-9024-378758F1D088}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACX.Service", "src\backend\infrastructure\ACX.Service\ACX.Service.csproj", "{CD28E31B-A673-4CFB-908A-3E4E2452DEB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.Service", "src\backend\infrastructure\ACX.Service\ACX.Service.csproj", "{CD28E31B-A673-4CFB-908A-3E4E2452DEB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.LoggerService", "src\backend\core\ACX.LoggerService\ACX.LoggerService.csproj", "{D538346C-03A6-49DA-B616-38D966E4556B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.WebAPI", "src\backend\presentation\ACX.WebAPI\ACX.WebAPI.csproj", "{95132476-D3EA-4115-8ED8-FCFE42000A94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.EndsPoint", "src\backend\presentation\ACX.EndsPoint\ACX.EndsPoint.csproj", "{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACX.Shared", "src\backend\infrastructure\ACX.Shared\ACX.Shared.csproj", "{CC2C8229-391C-44A2-BBD4-3F1A8696A5EE}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{04A46369-EBED-4887-9025-3B7B7DC7F9AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +59,26 @@ Global
 		{CD28E31B-A673-4CFB-908A-3E4E2452DEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD28E31B-A673-4CFB-908A-3E4E2452DEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD28E31B-A673-4CFB-908A-3E4E2452DEB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D538346C-03A6-49DA-B616-38D966E4556B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D538346C-03A6-49DA-B616-38D966E4556B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D538346C-03A6-49DA-B616-38D966E4556B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D538346C-03A6-49DA-B616-38D966E4556B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95132476-D3EA-4115-8ED8-FCFE42000A94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95132476-D3EA-4115-8ED8-FCFE42000A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95132476-D3EA-4115-8ED8-FCFE42000A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95132476-D3EA-4115-8ED8-FCFE42000A94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC2C8229-391C-44A2-BBD4-3F1A8696A5EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC2C8229-391C-44A2-BBD4-3F1A8696A5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC2C8229-391C-44A2-BBD4-3F1A8696A5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC2C8229-391C-44A2-BBD4-3F1A8696A5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A46369-EBED-4887-9025-3B7B7DC7F9AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A46369-EBED-4887-9025-3B7B7DC7F9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A46369-EBED-4887-9025-3B7B7DC7F9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A46369-EBED-4887-9025-3B7B7DC7F9AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +93,10 @@ Global
 		{2BE22D77-C846-4B09-B9F9-3473342C0166} = {E84F93E3-743C-424E-A52A-216B60501FF2}
 		{2D028D91-5D6F-44FE-9024-378758F1D088} = {E84F93E3-743C-424E-A52A-216B60501FF2}
 		{CD28E31B-A673-4CFB-908A-3E4E2452DEB6} = {E84F93E3-743C-424E-A52A-216B60501FF2}
+		{D538346C-03A6-49DA-B616-38D966E4556B} = {593A3CB7-AF61-4B06-B91E-7CC87A80669D}
+		{95132476-D3EA-4115-8ED8-FCFE42000A94} = {69F7276C-9E65-4A0A-BB4B-6F1757A47040}
+		{97189B0A-CE6D-4EDB-A876-0B6B94DC7800} = {69F7276C-9E65-4A0A-BB4B-6F1757A47040}
+		{CC2C8229-391C-44A2-BBD4-3F1A8696A5EE} = {E84F93E3-743C-424E-A52A-216B60501FF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C86E8618-BAF0-41C2-9CED-4816D0CEE6E2}

@@ -9,8 +9,8 @@ namespace ACX.Application.Common
 {
     public interface IRepositoryBase<T>
     {
-        IEnumerable<T> FindAll(bool trackChanges);
-        IEnumerable<T> FindByCondition(Expression<Func<T, bool>> condition, bool trackChanges);
+        IQueryable<T> FindAll(bool trackChanges);
+        IQueryable<T> FindByCondition(Expression<Func<T, bool>> condition, bool trackChanges);
         void Create(T entity);
         void Update(T entity);
         void Delete(T entity);

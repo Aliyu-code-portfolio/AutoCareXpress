@@ -13,9 +13,10 @@ namespace ACX.Domain.Model
         public int Ref_Service_Type_ID { get; set; }
 
         [ForeignKey(nameof(ServiceProvider))]
-        public Guid ServiceProviderId { get; set; }
+        public string? ServiceProviderId { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "Minimum price must be a non-negative number.")]
+        [Column(TypeName ="money")]
         public decimal MinPrice { get; set; }
 
         //Navigational properties

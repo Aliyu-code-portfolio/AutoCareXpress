@@ -12,7 +12,8 @@ namespace ACX.Application.Contract
         Task<IEnumerable<ProviderService>> GetAllProviderServiceAsync(bool trackChanges);
         Task<IEnumerable<ProviderService>> GetAllProviderServiceByServiceTypeIdAsync(int id, bool trackChanges);
         Task<ProviderService> GetProviderServiceByIdAsync(int id, bool trackChanges);
-        Task<IEnumerable<ProviderService>> GetAllProviderServiceByProviderIdAsync(Guid providerId, bool trackChanges);
+        Task<IEnumerable<ProviderService>> GetAllProviderServiceByProviderIdAsync(string providerId, bool trackChanges);
+        //Task<IEnumerable<ProviderService>> GetProviderServiceByServiceTypeAndLocation(int serviceType, int serviceLocation, bool trackChanges);
         Task<ProviderService> GetProviderServiceByMinPriceAsync(decimal minPrice, bool trackChanges);
         void CreateProviderService(ProviderService providerService);
         void DeleteProviderService(ProviderService providerService);
