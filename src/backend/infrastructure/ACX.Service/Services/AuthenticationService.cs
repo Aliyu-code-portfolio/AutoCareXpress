@@ -46,7 +46,7 @@ namespace ACX.Service.Services
         {
             if(!_user.EmailConfirmed)
             {
-                throw new VerificationFailException("User has not verify email. Verify email.");
+                throw new VerificationFailException(_user.Id);
             }
             var signingCredentials = GetSigningCredentials();
             var claims = await GetClaims();
@@ -146,42 +146,44 @@ namespace ACX.Service.Services
             return principal;
         }
 
-        public async Task<IdentityResult> RegisterUser(UserRegistrationDto userRegistrationDto)
+        public async Task<(IdentityResult result, string id)> RegisterUser(UserRegistrationDto userRegistrationDto)
         {
             var user = _mapper.Map<User>(userRegistrationDto);
             user.UserName = user.Email;
             var result = await _userManager.CreateAsync(user,
             userRegistrationDto.Password);
+            var id = "";
             if (result.Succeeded)
             {
                 await _userManager.AddToRolesAsync(user, userRegistrationDto.Roles);
-                await SendOTPEmail(user);
+                id=await SendOTPEmail(user);
 
             }
-            return result;
+            return (result,id);
         }
 
-        public async Task<IdentityResult> RegisterProvider(ServiceProviderCreationDto serviceProviderCreationDto)
+        public async Task<(IdentityResult result,string id)> RegisterProvider(ServiceProviderCreationDto serviceProviderCreationDto)
         {
             var user = _mapper.Map<User>(serviceProviderCreationDto);
             user.Email = serviceProviderCreationDto.CompanyEmail;
             user.UserName = user.Email;
             var result = await _userManager.CreateAsync(user,
             serviceProviderCreationDto.Password);
+            var id="";
             if (result.Succeeded)
-            {
+            { 
                 await _userManager.AddToRolesAsync(user, serviceProviderCreationDto.Roles);
                 var providerModel = _mapper.Map<ServiceProvider>(serviceProviderCreationDto);
                 providerModel.Id=user.Id;
                 _repositoryManager.ServiceProviderRepository.CreateServiceProvider(providerModel);
                 await _repositoryManager.SaveChangesAsync();
-                await SendOTPEmail(user);
+                id = await SendOTPEmail(user);
 
             }
-            return result;
+            return (result, id);
         }
 
-        private async Task SendOTPEmail(User user)
+        private async Task<String> SendOTPEmail(User user)
         {
             var code = new Random().Next(1234,9899);
             var body = $"Hi, Welcome to AutoCareXpress \n\nYour One Time Password (OTP) is {code}. " +
@@ -192,6 +194,7 @@ namespace ACX.Service.Services
             user.EmailTokenExpiryDate = DateTime.Now.AddMinutes(10);
             _repositoryManager.UserRepository.UpdateUser(user);
             await _repositoryManager.SaveChangesAsync();
+            return user.Id;
         }
 
         public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuthenticationDto)

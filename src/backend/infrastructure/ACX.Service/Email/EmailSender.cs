@@ -29,7 +29,7 @@ namespace ACX.Service.Email
             };
 
             return client.SendMailAsync(
-                new MailMessage(from: "AutoCareXpress Inc",
+                new MailMessage(from: "verify.autocarexpress@outlook.com",
                                 to: email,
                                 subject,
                                 message

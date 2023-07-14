@@ -22,15 +22,15 @@ namespace ACX.EndsPoint.Controllers
         public async Task<ActionResult> RegisterSpecialUser([FromBody] UserRegistrationDto userCreationDto)
         {
             var result = await _service.AuthenticationService.RegisterUser(userCreationDto);
-            if(!result.Succeeded)
+            if(!result.result.Succeeded)
             {
-                foreach(var error in result.Errors)
+                foreach(var error in result.result.Errors)
                 {
                     ModelState.TryAddModelError(error.Code, error.Description);
                 }
                 return BadRequest(ModelState);
             }
-            return Ok("Successfully created an account. Please verify email");
+            return Ok(result.id);
         }
 
         //register for service providers
@@ -47,15 +47,15 @@ namespace ACX.EndsPoint.Controllers
                 }
             }
             var result = await _service.AuthenticationService.RegisterProvider(userCreationDto);
-            if (!result.Succeeded)
+            if (!result.result.Succeeded)
             {
-                foreach (var error in result.Errors)
+                foreach (var error in result.result.Errors)
                 {
                     ModelState.TryAddModelError(error.Code, error.Description);
                 }
                 return BadRequest(ModelState);
             }
-            return Ok("Successfully created an account. Please verify email");
+            return Ok(new {id= result.id });
         }
 
         //register for normal users
@@ -71,16 +71,16 @@ namespace ACX.EndsPoint.Controllers
                 }
             }
             var result = await _service.AuthenticationService.RegisterUser(userCreationDto);
-            if (!result.Succeeded)
+            if (!result.result.Succeeded)
             {
 
-                foreach (var error in result.Errors)
+                foreach (var error in result.result.Errors)
                 {
                     ModelState.TryAddModelError(error.Code, error.Description);
                 }
                 return BadRequest(ModelState);
             }
-            return Ok("Successfully created an account. Please verify email");
+            return Ok(new { id = result.id });
         }
 
         //Login for every type of users
