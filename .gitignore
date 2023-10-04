@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 /src/backend/presentation/ACX.WebAPI/appsettings.json
 /src/backend/presentation/ACX.WebAPI/appsettings.Development.json
+/src/backend/presentation/ACX.WebAPI/appsettings.json
