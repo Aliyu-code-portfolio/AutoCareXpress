@@ -41,11 +41,11 @@ app.ConfigureExceptionHandler(logger);
     app.UseSwagger();
     app.UseSwaggerUI();
 
-//}
+/*}
 else
 {
     app.UseHsts();
-}
+}*/
 app.UseStaticFiles();
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
